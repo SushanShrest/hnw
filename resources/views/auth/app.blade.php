@@ -8,7 +8,7 @@
     </script>
 
     <title>Health Welfare Nepal</title>
-    <link rel="stylesheet" href="{{ asset('backend/css/custom.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/css/style.css') }}">
 </head>
 <body>
     <div class="container">
