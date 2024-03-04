@@ -3,9 +3,9 @@
     <!-- Logo -->
     <a href="#" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><img src="{{ asset('backend/images/logo-white.png') }}" alt="" /></span>
+        <span class="logo-mini"><img src="{{ asset('backend/images/hlogo.png') }}" alt="" /></span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><img src="{{ asset('backend/images/logo-white.png') }}" alt="" /><b>HNW</span>
+        <span class="logo-lg"><img src="{{ asset('backend/images/hlogo.png') }}" alt="" /><b>HNW</span>
     </a>
 
     <!-- Header Navbar: style can be found in header.less -->
@@ -49,16 +49,15 @@
                             <div class="pull-left">
                                 <a href="#" class="btn btn-default btn-flat">Profile</a>
                             </div>
-                            {{-- <div class="pull-right">
-                                <a href="#" class="btn btn-default btn-flat"
+                            <div class="pull-right">
+                                <a href="route('logout')" class="btn btn-default btn-flat"
                                     onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">Sign
-                                    out</a>
-                                <form id="logout-form" action="{{ route('backend.logout') }}" method="POST"
+                                                     document.getElementById('logout-form').submit();">Log out</a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                     style="display: none;">
                                     {{ csrf_field() }}
                                 </form>
-                            </div> --}}
+                            </div>
                         </li>
                     </ul>
                 </li>

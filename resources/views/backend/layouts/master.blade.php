@@ -11,8 +11,9 @@
     <link rel="stylesheet" href="{{ asset('backend/css/bootstrap.min.css') }}">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('backend/css/font-awesome.css') }}">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="{{ asset('backend/css/ionicons.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/css/font-awesome.min.css') }}">
+    
+   <!-- Others -->
     <link rel="stylesheet" href="{{ asset('backend/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/css/jquery.toast.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/css/toastr.min.css') }}">
@@ -20,7 +21,7 @@
 
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('backend/css/AdminLTE.css') }}">
-    <link rel="stylesheet" href="{{ asset('backend/css/skins/_all-skins.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/css/skins/skin-green.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/css/custom.css') }}">
 
     {{-- if required --}}
@@ -33,7 +34,7 @@
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap" rel="stylesheet">
 </head>
 
-<body class="hold-transition skin-purple sidebar-mini">
+<body class="hold-transition skin-green sidebar-mini">
     <div class="wrapper">
         @include('backend.layouts.header')
         @include('backend.layouts.sidebar')
@@ -50,15 +51,6 @@
     <script src="{{ asset('backend/js/fastclick.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('backend/js/adminlte.min.js') }}"></script>
-
-    <!-- Sparkline -->
-    {{-- <script src="{{ asset('backend/js/jquery.sparkline.min.js') }}"></script> --}}
-
-    <!-- SlimScroll -->
-    {{-- <script src="{{ asset('backend/js/jquery.slimscroll.min.js') }}"></script> --}}
-
-    <!-- ChartJS -->
-    {{-- <script src="{{ asset('backend/js/Chart.js') }}"></script> --}}
 
     <script src="{{ asset('backend/js/select2.min.js') }}"></script>
     <script src="{{ asset('backend/js/jquery.toast.js') }}"></script>
