@@ -5,7 +5,7 @@
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><img src="{{ asset('backend/images/hlogo.png') }}" alt="" /></span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><img src="{{ asset('backend/images/hlogo.png') }}" alt="" /><b>HNW</span>
+        <span class="logo-lg"><img src="{{ asset('backend/images/hlogo.png') }}" alt="" style="width: 60px; height: 60px;"/><b>HNW</span>
     </a>
 
     <!-- Header Navbar: style can be found in header.less -->

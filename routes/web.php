@@ -15,12 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect('/auth');
+    return redirect('/login');
 });
 
-Route::get('/auth', function () {
-    return view('auth.app');
-});
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');

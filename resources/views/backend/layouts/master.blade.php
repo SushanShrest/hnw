@@ -78,7 +78,7 @@
 
         });
     </script>
-    {{-- @include('backend.partials.toastr') --}}
+    @include('backend.partials.toastr')
 
     {{-- if required --}}
     @yield('backend-page-specific-js')
