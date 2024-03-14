@@ -85,14 +85,14 @@
             <li class="header">Admin</li>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-home"></i>
-                    <span>Home Blogs</span>
+                    <i class="fa fa-building"></i>
+                    <span>Nothing</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-plus"></i> Blog list</a></li>
+                    <li><a href="#"><i class="fa fa-plus"></i> View Department</a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -106,7 +106,7 @@
                 <ul class="treeview-menu">
                     <li><a href="#"><i class="fa fa-shield"></i> Roles</a></li>
                     <li><a href="#"><i class="fa fa-users"></i> Users</a></li>
-                    <li><a href="#"><i class="fa fa-building"></i> Departments</a></li>
+                    <li><a href="{{ route('departments.index') }}"><i class="fa fa-building"></i> Departments</a></li>
                 </ul>
             </li>
             @endrole

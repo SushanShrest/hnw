@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\DepartmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,8 +25,20 @@ Route::get('/', function () {
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    return view('backend.dashboard');
+})->middleware(['auth', 'verified'])->name('backend.dashboard');
+
+
+
+//ADmin Area Routes
+Route::group(['middleware' => 'auth', 'prefix' => 'backend'], function () {
+
+//DEPARTMENT ROUTES
+Route::resource('departments', DepartmentController::class);
+});
+
+
+
 
 
 Route::middleware('auth')->group(function () {
