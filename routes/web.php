@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\DepartmentController;
+use App\Http\Controllers\Backend\DoctorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,9 @@ Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'backend'], fu
 
     // DEPARTMENT ROUTES
     Route::resource('departments', DepartmentController::class)->except(['display']);
+
+    // DOCTOR ROUTES
+    Route::resource('doctors', DoctorController::class);
 });
 
 

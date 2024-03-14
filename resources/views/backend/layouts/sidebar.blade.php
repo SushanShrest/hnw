@@ -106,6 +106,7 @@
                 <ul class="treeview-menu">
                     <li><a href="#"><i class="fa fa-shield"></i> Roles</a></li>
                     <li><a href="#"><i class="fa fa-users"></i> Users</a></li>
+                    <li><a href="{{ route('doctors.index') }}"><i class="fa fa-Plus"></i> Doctors</a></li>
                     <li><a href="{{ route('departments.index') }}"><i class="fa fa-building"></i> Departments</a></li>
                 </ul>
             </li>
