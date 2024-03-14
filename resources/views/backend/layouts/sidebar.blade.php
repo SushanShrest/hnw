@@ -29,8 +29,8 @@
                 </a>
 
                 <ul class="treeview-menu">
-                    <li><a href="#"> <i class="fa fa-plus-circle"></i>  Create</a></li>
-                    {{-- <li><a href="#" ><i class="fa-regular fa-list"></i> List</a></li> --}}
+                    <li><a href="{{ route('departments.display') }}"> <i class="fa fa-building"></i> Department</a></li>
+                    {{-- <li><a href="#" ><i class="fa-regular fa-list"></i> List</a></li> --}}p
 
                 </ul>
             </li>

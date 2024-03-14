@@ -87,17 +87,24 @@ class DepartmentController extends Controller
     // }
 
 
-    public function show($id)
-    {
-        try {
-            $department = $this->department->findOrFail($id);
-            // $this->authorize('read-department', $department);
-        } catch (Exception $e) {
-            Log::error($e->getMessage());
-            return redirect()->route($this->baseRoute)->with('error', 'Oops! Something went wrong!');
-        }
+    // public function show($id)
+    // {
+    //     try {
+    //         $department = $this->department->findOrFail($id);
+    //         // $this->authorize('read-department', $department);
+    //     } catch (Exception $e) {
+    //         Log::error($e->getMessage());
+    //         return redirect()->route($this->baseRoute)->with('error', 'Oops! Something went wrong!');
+    //     }
 
-        return view($this->viewPath . '.detail', compact('department'));
+    //     return view($this->viewPath . '.show', compact('department'));
+    // }
+
+    public function display()
+    {
+        // $this->authorize('read-department');
+        $departments = $this->department->get();
+        return view($this->viewPath . '.display', compact('departments'));
     }
 
 

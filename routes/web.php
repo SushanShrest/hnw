@@ -28,16 +28,14 @@ Route::get('/dashboard', function () {
     return view('backend.dashboard');
 })->middleware(['auth', 'verified'])->name('backend.dashboard');
 
+Route::get('/backend/departments/display', [DepartmentController::class, 'display'])->name('departments.display');
 
+// Admin Area Routes
+Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'backend'], function () {
 
-//ADmin Area Routes
-Route::group(['middleware' => 'auth', 'prefix' => 'backend'], function () {
-
-//DEPARTMENT ROUTES
-Route::resource('departments', DepartmentController::class);
+    // DEPARTMENT ROUTES
+    Route::resource('departments', DepartmentController::class)->except(['display']);
 });
-
-
 
 
 
