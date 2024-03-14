@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\DepartmentController;
 use App\Http\Controllers\Backend\DoctorController;
+use App\Http\Controllers\Backend\TimingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,7 +40,16 @@ Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'backend'], fu
 
     // DOCTOR ROUTES
     Route::resource('doctors', DoctorController::class);
+
 });
+
+// Doctor Area Routes
+Route::group(['middleware' => ['auth', 'role:doctor'], 'prefix' => 'backend'], function () {
+    // TIMING ROUTES
+    Route::resource('timings', TimingController::class);
+
+});
+
 
 
 

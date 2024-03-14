@@ -73,7 +73,7 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-shield"></i> Appointment schedule</a></li>
+                    <li><a href="{{ route('timings.index') }}"><i class="fa fa-shield"></i> Timings</a></li>
                    
                 </ul>
             </li>

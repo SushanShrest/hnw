@@ -14,4 +14,9 @@ class Doctor extends Model
     {
         return $this->belongsTo(Department::class);
     }
+
+    public function timings()
+    {
+        return $this->hasMany(Timing::class);
+    }
 }
