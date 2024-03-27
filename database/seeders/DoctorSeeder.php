@@ -18,6 +18,7 @@ class DoctorSeeder extends Seeder
             'email' => 'doctor@example.com',
             'password' => bcrypt('doctor123'),
             'email_verified_at' => now(),
-        ])->assignRole('doctor');
+            'type' => 'doctor', 
+        ]);
     }
 }

@@ -6,7 +6,6 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 
-
 class AdminSeeder extends Seeder
 {
     /**
@@ -19,6 +18,7 @@ class AdminSeeder extends Seeder
             'email' => 'admin@example.com',
             'password' => bcrypt('admin123'),
             'email_verified_at' => now(),
-        ])->assignRole('admin');
+            'type' => 'admin', // Set the user_type to 'admin'
+        ]);
     }
 }

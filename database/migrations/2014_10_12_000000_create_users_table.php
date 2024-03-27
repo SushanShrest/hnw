@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->string('type')->default('user'); // Adding user_type column with default value 'user'
             $table->timestamps();
         });
     }
