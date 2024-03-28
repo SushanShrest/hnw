@@ -39,7 +39,7 @@
     color: #fff;
   }
   .skin-green .main-header .navbar .dropdown-menu li a:hover {
-    background: #008d4c;
+    background: #559988;
   }
 }
 .skin-green .main-header .logo {
@@ -51,7 +51,7 @@
   background-color: #4c8a7b;
 }
 .skin-green .main-header li.user-header {
-  background-color: #00a65a;
+  background-color: #559988;
 }
 .skin-green .content-header {
   background: transparent;
@@ -79,7 +79,7 @@
   background: #1e282c;
 }
 .skin-green .sidebar-menu > li.active > a {
-  border-left-color: #00a65a;
+  border-left-color: #559988;
 }
 .skin-green .sidebar-menu > li > .treeview-menu {
   margin: 0 1px;

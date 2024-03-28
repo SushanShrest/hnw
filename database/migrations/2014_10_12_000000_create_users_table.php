@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->string('type')->default('user'); // Adding user_type column with default value 'user'
+            $table->string('contact')->nullable();
+            $table->string('location')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

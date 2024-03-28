@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+// use App\Http\Controllers\Backend\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\DepartmentController;
 use App\Http\Controllers\Backend\DoctorController;
 use App\Http\Controllers\Backend\TimingController;
+use App\Http\Controllers\Backend\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,11 +53,12 @@ Route::group(['middleware' => ['auth', 'role:doctor'], 'prefix' => 'backend'], f
 
 
 
-
+ // PROFILE ROUTES
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 });
+
 
 require __DIR__.'/auth.php';

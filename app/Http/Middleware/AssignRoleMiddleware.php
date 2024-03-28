@@ -21,7 +21,7 @@ class AssignRoleMiddleware
         if ($request->user()) {
             // Get the user's type
             $userType = $request->user()->type;
-    
+
             // Assign role based on user type
             switch ($userType) {
                 case 'admin':
@@ -34,12 +34,17 @@ class AssignRoleMiddleware
                     $role = Role::where('name', 'user')->first();
                     break;
             }
-    
+
+            // If role is not found, log an error and abort
+            if (!$role) {
+                \Log::error("Role not found for user type: $userType");
+                abort(500, 'Internal Server Error');
+            }
+
             // Assign the role to the user
             $request->user()->assignRole($role);
         }
-    
+
         return $next($request);
     }
-    
 }

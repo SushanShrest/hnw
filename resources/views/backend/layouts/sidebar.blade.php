@@ -59,6 +59,14 @@
                 </a>
             </li>
 
+            {{-- <li>
+                <a href="{{ route('profile.show') }}">
+                    <i class="fa fa-map-marker"></i> <span>Profile</span>
+                    <span class="pull-right-container">
+                    </span>
+                </a>
+            </li> --}}
+
             {{-- Doctor Section --}}
             @role('doctor')
             <li class="header">Doctor</li>

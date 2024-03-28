@@ -21,16 +21,15 @@
                 <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="@if (Auth::check() && Auth::user()->image != null) {{ Auth::user()->image }} @else {{ asset('backend/images/dummy_user.png') }} @endif"
+                        <img src="@if (Auth::check() && Auth::user()->image) {{ asset('uploads/profile/' . Auth::user()->image) }} @else {{ asset('backend/images/dummy_user.png') }} @endif"
                             class="user-image" alt="User Image">
                         <span class="hidden-xs">{{ Auth::check() ? Auth::user()->name : '' }}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
-                            <img src="@if (Auth::check() && Auth::user()->image != null) {{ Auth::user()->image }} @else {{ asset('backend/images/dummy_user.png') }} @endif"
-                                class="img-circle" alt=" {{ Auth::check() ? Auth::user()->name : '' }}">
-
+                            <img src="@if (Auth::check() && Auth::user()->image) {{ asset('uploads/profile/' . Auth::user()->image) }} @else {{ asset('backend/images/dummy_user.png') }} @endif"
+                                class="img-circle" alt="{{ Auth::check() ? Auth::user()->name : '' }}">
                             <p>
                                 {{ Auth::check() ? Auth::user()->name : '' }} <br />
                                 <small>
@@ -40,27 +39,24 @@
                                         @endforeach
                                     @endif
                                 </small>
-
-
                             </p>
                         </li>
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                <a href="{{ route('profile.show') }}" class="btn btn-default btn-flat">Profile</a>
                             </div>
                             <div class="pull-right">
-                                <a href="route('logout')" class="btn btn-default btn-flat"
-                                    onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">Log out</a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                    style="display: none;">
+                                <a href="{{ route('logout') }}" class="btn btn-default btn-flat"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log out</a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
                                 </form>
                             </div>
                         </li>
                     </ul>
                 </li>
+                
                 <!-- Control Sidebar Toggle Button -->
             </ul>
         </div>
