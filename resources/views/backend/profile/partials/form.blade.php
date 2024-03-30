@@ -36,6 +36,29 @@
     </div>
 
     <div class="form-group row">
+        <div class="col-md-6 @error('gender') has-error @enderror">
+            <label class="control-label">Gender</label>
+            <select name="gender" class="form-control">
+                <option value="">Select Gender</option>
+                <option value="Male" {{ old('gender', $user->gender) == 'Male' ? 'selected' : '' }}>Male</option>
+                <option value="Female" {{ old('gender', $user->gender) == 'Female' ? 'selected' : '' }}>Female</option>
+                <option value="Other" {{ old('gender', $user->gender) == 'Other' ? 'selected' : '' }}>Other</option>
+            </select>
+            @error('gender')
+                <span class="help-block">{{ $message }}</span>
+            @enderror
+        </div>        
+
+        <div class="col-md-6 @error('dob') has-error @enderror">
+            <label class="control-label">Date of Birth</label>
+            <input type="date" name="dob" value="{{ old('dob') ? old('dob') : ($user->dob ? \Carbon\Carbon::parse($user->dob)->format('Y-m-d') : '') }}" class="form-control" placeholder="Date of Birth">
+            @error('dob')
+                <span class="help-block">{{ $message }}</span>
+            @enderror
+        </div>
+    </div>
+
+    <div class="form-group row">
         <div class="col-md-6 @error('image') has-error @enderror">
             <label class="control-label">Image</label>
             <input type="file" name="image" class="form-control" accept="image/*">

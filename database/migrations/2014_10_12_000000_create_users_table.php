@@ -18,10 +18,12 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->string('type')->default('user'); // Adding user_type column with default value 'user'
+            $table->string('type')->default('user');
+            $table->string('gender')->nullable();
             $table->string('contact')->nullable();
             $table->string('location')->nullable();
             $table->string('image')->nullable();
+            $table->date('dob')->nullable();
             $table->timestamps();
         });
     }
@@ -34,3 +36,4 @@ return new class extends Migration
         Schema::dropIfExists('users');
     }
 };
+

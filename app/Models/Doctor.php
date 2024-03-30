@@ -8,8 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Doctor extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'email','password', 'department_id', 'status', 'gender', 'experience', 'qualification'];
+    protected $fillable = ['department_id', 'experience', 'qualification', 'specialization', 'education', 'work_places'];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    
     public function department()
     {
         return $this->belongsTo(Department::class);

@@ -25,21 +25,27 @@ class AssignRoleMiddleware
             // Assign role based on user type
             switch ($userType) {
                 case 'admin':
-                    $role = Role::where('name', 'admin')->first();
+                    $roleName = 'admin';
                     break;
                 case 'doctor':
-                    $role = Role::where('name', 'doctor')->first();
+                    $roleName = 'doctor';
                     break;
                 default:
-                    $role = Role::where('name', 'user')->first();
+                    $roleName = 'user';
                     break;
             }
+
+            // Find the role
+            $role = Role::where('name', $roleName)->first();
 
             // If role is not found, log an error and abort
             if (!$role) {
                 \Log::error("Role not found for user type: $userType");
                 abort(500, 'Internal Server Error');
             }
+
+            // Remove existing roles
+            $request->user()->syncRoles([$role]);
 
             // Assign the role to the user
             $request->user()->assignRole($role);

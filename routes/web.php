@@ -6,6 +6,8 @@ use App\Http\Controllers\Backend\DepartmentController;
 use App\Http\Controllers\Backend\DoctorController;
 use App\Http\Controllers\Backend\TimingController;
 use App\Http\Controllers\Backend\ProfileController;
+use App\Http\Controllers\Backend\RequestController;
+use App\Http\Controllers\Backend\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +44,9 @@ Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'backend'], fu
     // DOCTOR ROUTES
     Route::resource('doctors', DoctorController::class);
 
+    // USER ROUTES
+    Route::resource('users', UserController::class);
+
 });
 
 // Doctor Area Routes
@@ -52,6 +57,9 @@ Route::group(['middleware' => ['auth', 'role:doctor'], 'prefix' => 'backend'], f
 });
 
 
+Route::middleware(['auth'])->group(function () {
+    Route::resource('requests', RequestController::class);
+});
 
  // PROFILE ROUTES
 Route::middleware('auth')->group(function () {

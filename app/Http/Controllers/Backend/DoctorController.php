@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Doctor;
 use App\Models\Department;
-use Illuminate\Http\Request; // Add this line
+use Illuminate\Http\Request; 
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;

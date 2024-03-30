@@ -13,17 +13,16 @@ return new class extends Migration
     {
         Schema::create('doctors', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->unsignedBigInteger('department_id')->constrained('departments')->onDelete('cascade');//if department delete all doctor also delete
-            $table->string('status');
-            $table->string('gender');
-            $table->integer('experience');
-            $table->string('qualification');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('department_id');
+            $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
+            $table->integer('experience')->nullable();
+            $table->string('qualification')->nullable();
+            $table->string('specialization')->nullable();
+            $table->string('education')->nullable();
+            $table->string('work_places')->nullable();
             $table->timestamps();
-
-            $table->foreign('department_id')->references('id')->on('departments');
         });
     }
 

@@ -1,4 +1,7 @@
 @extends('backend.layouts.master')
+@section('backend-title', 'Dashboard')
+@section('page-specific-css')
+@endsection
 @section('backend-content')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->

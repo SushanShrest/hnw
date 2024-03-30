@@ -45,9 +45,13 @@
                                     <p class="profile-text"><strong>Email:</strong> {{ $user->email }}</p>
                                     <p class="profile-text"><strong>Contact:</strong> {{ $user->contact ?? 'N/A' }}</p>
                                     <p class="profile-text"><strong>Location:</strong> {{ $user->location ?? 'N/A' }}</p>
+                                    <p class="profile-text"><strong>Gender:</strong> {{ $user->gender ?? 'N/A' }}</p>
+                                    <p class="profile-text"><strong>Date of Birth:</strong> {{ $user->dob ?? 'N/A' }}</p>
+                                    <p class="profile-text"><strong>Age:</strong> {{ $user->dob ? \Carbon\Carbon::parse($user->dob)->age : 'N/A' }}</p>
                                     <!-- Add more profile fields here as needed -->
                                 </div>
                             </div>
+                            
                         </div>
                     </div>
                 </div>

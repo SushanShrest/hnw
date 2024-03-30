@@ -59,13 +59,13 @@
                 </a>
             </li>
 
-            {{-- <li>
-                <a href="{{ route('profile.show') }}">
-                    <i class="fa fa-map-marker"></i> <span>Profile</span>
+            <li>
+                <a href="{{ route('requests.index') }}">
+                    <i class="fa fa-comments"></i> <span>Request for doctor role</span>
                     <span class="pull-right-container">
                     </span>
                 </a>
-            </li> --}}
+            </li>
 
             {{-- Doctor Section --}}
             @role('doctor')
@@ -112,8 +112,8 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-shield"></i> Roles</a></li>
-                    <li><a href="#"><i class="fa fa-users"></i> Users</a></li>
+                    {{-- <li><a href="#"><i class="fa fa-shield"></i> Roles</a></li> --}}
+                    <li><a href="{{ route('users.index') }}"><i class="fa fa-users"></i> Users</a></li>
                     <li><a href="{{ route('doctors.index') }}"><i class="fa fa-Plus"></i> Doctors</a></li>
                     <li><a href="{{ route('departments.index') }}"><i class="fa fa-building"></i> Departments</a></li>
                 </ul>
