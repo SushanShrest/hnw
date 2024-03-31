@@ -52,7 +52,7 @@
             </li>
 
             <li>
-                <a href="#">
+                <a href="{{ route('pharmacies.display') }}">
                     <i class="fa fa-map-marker"></i> <span>Pharmacy</span>
                     <span class="pull-right-container">
                     </span>
@@ -94,13 +94,14 @@
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-building"></i>
-                    <span>Nothing</span>
+                    <span>Services</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-plus"></i> View Department</a></li>
+                    <li><a href="{{ route('departments.index') }}"><i class="fa fa-building"></i> Departments</a></li>
+                    <li><a href="{{ route('pharmacies.index') }}"><i class="fa fa-plus"></i> Pharmacies</a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -114,8 +115,8 @@
                 <ul class="treeview-menu">
                     {{-- <li><a href="#"><i class="fa fa-shield"></i> Roles</a></li> --}}
                     <li><a href="{{ route('users.index') }}"><i class="fa fa-users"></i> Users</a></li>
-                    <li><a href="{{ route('doctors.index') }}"><i class="fa fa-Plus"></i> Doctors</a></li>
-                    <li><a href="{{ route('departments.index') }}"><i class="fa fa-building"></i> Departments</a></li>
+                    <li><a href="{{ route('doctors.index') }}"><i class="fa fa-plus"></i> Doctors</a></li>
+                    
                 </ul>
             </li>
             @endrole

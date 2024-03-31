@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\TimingController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\RequestController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\Backend\PharmacyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +34,12 @@ Route::get('/dashboard', function () {
     return view('backend.dashboard');
 })->middleware(['auth', 'verified'])->name('backend.dashboard');
 
+
+// Department display
 Route::get('/backend/departments/display', [DepartmentController::class, 'display'])->name('departments.display');
+
+// Phamacies display
+Route::get('/backend/pharmacies/display', [PharmacyController::class, 'display'])->name('pharmacies.display');
 
 // Admin Area Routes
 Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'backend'], function () {
@@ -46,6 +52,9 @@ Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'backend'], fu
 
     // USER ROUTES
     Route::resource('users', UserController::class);
+
+    // PHARMACIES ROUTES
+    Route::resource('pharmacies', PharmacyController::class)->except(["display"]);
 
 });
 

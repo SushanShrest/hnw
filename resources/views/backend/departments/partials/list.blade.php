@@ -11,16 +11,13 @@
         @if ($departments->isNotEmpty())
             @foreach ($departments as $department)
                 <tr>
-
                     <td>{{ $loop->index + 1 }}</td>
                     <td>{{ $department->department_name }}</td>
                     <td>{{ $department->code }}</td>
-                    <td>
-                        {{-- @can('update-department') --}}
+                    <td>                       
                         <a href="{{ route('departments.edit', $department) }}" class="btn btn-info btn-xs"> <i
                                 class="fa fa-pencil"></i></a>
-
-                        {{-- @endcan --}}
+            
                         @include('backend.partials.delete_modal', [
                             'id' => $department->id,
                             'title' => $department->department_name,
