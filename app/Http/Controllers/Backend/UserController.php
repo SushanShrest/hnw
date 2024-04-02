@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Doctor;
+
 
 class UserController extends Controller
 {
@@ -58,12 +60,53 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        $user = User::findOrFail($id);
-        $user->update($request->all());
-        return redirect()->route($this->baseRoute)->with('success', 'User updated successfully');
+
+     /**
+ * Update the specified user in storage.
+ *
+ * @param  \Illuminate\Http\Request  $request
+ * @param  int  $id
+ * @return \Illuminate\Http\Response
+ */
+public function update(Request $request, $id)
+{
+    $user = User::findOrFail($id);
+    
+    // Store the original user type before the update
+    $originalUserType = $user->type;
+
+    // Update the user attributes
+    $user->update($request->all());
+
+    // Check if the user type has been changed to "doctor" and if it wasn't already a "doctor"
+    if ($user->type === 'doctor' && $originalUserType !== 'doctor') {
+        // Create a new Doctor instance
+        $doctor = new Doctor([
+            // You can assign other attributes of the doctor here
+            'user_id' => $user->id,
+            // Assign other attributes like department_id, experience, qualification, etc.
+        ]);
+        
+        // Save the doctor record
+        $doctor->save();
+    } elseif ($user->type !== 'doctor' && $originalUserType === 'doctor') {
+        // If the user type was changed from "doctor" to something else
+        // Delete the corresponding doctor record
+        $user->doctor()->delete();
     }
+
+    return redirect()->route($this->baseRoute)->with('success', 'User updated successfully');
+}
+
+
+
+
+    // public function update(Request $request, $id)
+    // {
+    //     $user = User::findOrFail($id);
+    //     $user->update($request->all());
+    //     return redirect()->route($this->baseRoute)->with('success', 'User updated successfully');
+    // }
 
     /**
      * Remove the specified user from storage.

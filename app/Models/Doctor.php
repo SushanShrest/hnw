@@ -8,7 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Doctor extends Model
 {
     use HasFactory;
-    protected $fillable = ['department_id', 'experience', 'qualification', 'specialization', 'education', 'work_places'];
+    protected $fillable = [
+        'user_id',
+        'department_id',
+        'experience',
+        'qualification',
+        'specialization',
+        'education',
+        'work_places',
+    ];
 
     public function user()
     {

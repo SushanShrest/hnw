@@ -11,16 +11,15 @@
         @if ($doctors->isNotEmpty())
             @foreach ($doctors as $doctor)
                 <tr>
-
                     <td>{{ $loop->index + 1 }}</td>
-                    <td>{{ $doctor->name }}</td>
-                    <td>{{ $doctor->department->department_name }}</td>
+                    <td>{{ $doctor->user->name }}</td>
+                    <td>{{ $doctor->department ? $doctor->department->department_name : 'Not in a Department' }}</td>
                     <td>
-                        {{-- @can('update-doctor') --}}
-                        <a href="{{ route('doctors.edit', $doctor) }}" class="btn btn-info btn-xs"> <i
-                                class="fa fa-pencil"></i></a>
-
-                        {{-- @endcan --}}
+                        {{-- Edit Button --}}
+                        <a href="{{ route('doctors.edit', $doctor) }}" class="btn btn-info btn-xs">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                        {{-- Delete Button --}}
                         @include('backend.partials.delete_modal', [
                             'id' => $doctor->id,
                             'title' => $doctor->name,
@@ -34,6 +33,6 @@
                 <td colspan="4" class="text-center">No Data !</td>
             </tr>
         @endif
-
     </tbody>
+    
 </table>

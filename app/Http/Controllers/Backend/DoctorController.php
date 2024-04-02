@@ -45,7 +45,7 @@ class DoctorController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6',
-            'department_id' => 'required|exists:departments,id',
+            'department_id' => 'nullable|exists:departments,id',
             'status' => 'required',
             'gender' => 'required',
             'experience' => 'required|integer',
