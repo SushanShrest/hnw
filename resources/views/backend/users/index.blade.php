@@ -20,13 +20,22 @@
         <!-- Main content -->
         <section class="content">
 
+            <!-- Search form -->
+            <div class="form-group row">
+                <div class="box-body col-md-3">
+                    <form action="{{ route('users.index') }}" method="GET">
+                        <div class="input-group">
+                            <input type="text" name="userSearch" class="form-control" placeholder="Search users...">
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
             <!-- Default box -->
             <div class="box no-padding">
-                {{-- <div class="box-header with-border">                 
-                    <h3 class="box-title"><a class="btn bg-purple btn-flat" href="{{ route('users.create') }}"><i
-                                class="fa fa-plus"></i>
-                            &nbsp;Add User</a></h3>           
-                </div> --}}
                 <div class="box-body">
                     @include('backend.users.partials.list')
                 </div>

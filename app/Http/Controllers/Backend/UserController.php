@@ -16,11 +16,28 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
-        return view($this->viewPath . '.index', compact('users'));
+        $query = User::query();
+
+    // Check if search term is provided
+        if ($request->has('userSearch')) {
+            $searchTerm = $request->userSearch;
+
+        // Check if search term is one of the gender options
+            if ($searchTerm === 'male' || $searchTerm === 'female' || $searchTerm === 'other') {
+                $query->where('gender', $searchTerm);
+            } else {
+            // If not a gender term, perform general search
+                $this->searchUsers($query, $searchTerm);
+            }
     }
+
+    $users = $query->get();
+
+    return view($this->viewPath . '.index', compact('users'));
+    }
+
 
     /**
      * Show the form for editing the specified user.
@@ -60,4 +77,14 @@ class UserController extends Controller
         $user->delete();
         return redirect()->route($this->baseRoute)->with('success', 'User deleted successfully');
     }
+
+    private function searchUsers($query, $searchTerm)
+    {
+        return $query->where('name', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('id', $searchTerm)
+                    ->orWhere('location', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('type', 'like', '%' . $searchTerm . '%');
+    }
+
 }
+

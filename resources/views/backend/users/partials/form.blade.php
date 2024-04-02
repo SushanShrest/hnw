@@ -1,5 +1,12 @@
 <div class="box-body">
     <div class="form-group row">
+        <div class="col-md-6">
+            <label class="control-label">User ID</label>
+            <input type="text" value="{{ $user->id }}" class="form-control" readonly>
+        </div>
+    </div>
+
+    <div class="form-group row">
         <div class="col-md-6 @error('name') has-error @enderror">
             <label class="control-label">Name<small class="required-field">*</small></label>
             <input type="text" name="name" value="{{ old('name') ? old('name') : $user->name }}"
@@ -34,13 +41,17 @@
         </div>
 
         <div class="col-md-6 @error('gender') has-error @enderror">
-            <label class="control-label">Gender</label>
-            <input type="text" name="gender" value="{{ old('gender') ? old('gender') : $user->gender }}"
-                class="form-control" placeholder="Enter Gender">
+            <label class="control-label">Gender<small class="required-field">*</small></label>
+            <select name="gender" class="form-control">
+                <option value="male" {{ old('gender', $user->gender) == 'male' ? 'selected' : '' }}>Male</option>
+                <option value="female" {{ old('gender', $user->gender) == 'female' ? 'selected' : '' }}>Female</option>
+                <option value="other" {{ old('gender', $user->gender) == 'other' ? 'selected' : '' }}>Other</option>
+            </select>
             @error('gender')
                 <span class="help-block">{{ $message }}</span>
             @enderror
         </div>
+        
     </div>
 
     <div class="form-group row">

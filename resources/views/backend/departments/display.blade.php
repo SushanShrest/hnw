@@ -56,13 +56,9 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Department <small>Display</small>
+                Department
 
             </h1>
-            <ol class="breadcrumb">
-                <li><a href="{{ route('backend.dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-                <li class="active"><a href="{{ route('departments.display') }}">Departments</a></li>
-            </ol>
         </section>
 
         <!-- Main content -->

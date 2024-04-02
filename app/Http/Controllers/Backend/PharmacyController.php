@@ -16,10 +16,11 @@ class PharmacyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $pharmacies = Pharmacy::all();
-        return view($this->viewPath . '.index', compact('pharmacies'));
+        $searchTerm = $request->input('PharmacySearch', ''); // Get search term from request
+        $pharmacies = $this->searchPharmacies($searchTerm);
+        return view($this->viewPath . '.index', compact('pharmacies', 'searchTerm'));
     }
 
     /**
@@ -42,7 +43,6 @@ class PharmacyController extends Controller
      */
     public function store(Request $request)
     {
-        // Validate the request data
         $request->validate([
             'name' => 'required|string',
             'district' => 'required|string',
@@ -51,10 +51,8 @@ class PharmacyController extends Controller
             'contact' => 'required|string',
         ]);
 
-        // Create the pharmacy
         Pharmacy::create($request->all());
 
-        // Redirect to the index page with success message
         return redirect()->route($this->baseRoute)->with('success', 'Pharmacy created successfully');
     }
 
@@ -64,10 +62,11 @@ class PharmacyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function display()
+    public function display(Request $request)
     {
-        $pharmacies = Pharmacy::all();
-        return view($this->viewPath . '.display', compact('pharmacies'));
+        $searchTerm = $request->input('PharmacySearch', '');
+        $pharmacies = $this->searchPharmacies($searchTerm);
+    return view($this->viewPath . '.display', compact('pharmacies', 'searchTerm'));
     }
 
 
@@ -92,8 +91,18 @@ class PharmacyController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name' => 'required|string',
+            'district' => 'required|string',
+            'longitude' => 'required|numeric',
+            'latitude' => 'required|numeric',
+            'contact' => 'required|string',
+        ]);
+
         $pharmacy = Pharmacy::findOrFail($id);
+    
         $pharmacy->update($request->all());
+
         return redirect()->route($this->baseRoute)->with('success', 'Pharmacy updated successfully');
     }
 
@@ -109,4 +118,13 @@ class PharmacyController extends Controller
         $pharmacy->delete();
         return redirect()->route($this->baseRoute)->with('success', 'Pharmacy deleted successfully');
     }
+    
+    private function searchPharmacies($searchTerm)
+    {
+        return Pharmacy::where('name', 'like', '%' . $searchTerm . '%')
+                        ->orWhere('district', 'like', '%' . $searchTerm . '%')
+                        ->get();
+    }
+
+    
 }

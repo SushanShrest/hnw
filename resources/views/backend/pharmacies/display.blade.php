@@ -1,7 +1,11 @@
 @extends('backend.layouts.master')
+
 @section('backend-title', 'Pharmacies List')
+
 @section('page-specific-css')
+    <!-- Additional CSS specific to this page -->
 @endsection
+
 @section('backend-content')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -13,6 +17,20 @@
 
         <!-- Main content -->
         <section class="content">
+            <!-- Search form -->
+            <div class="form-group row">
+                <div class="box-body col-md-3">
+                    <form action="{{ route('pharmacies.display') }}" method="GET">
+                        <div class="input-group">
+                            <input type="text" name="PharmacySearch" class="form-control" placeholder="Search pharmacies...">
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
             <!-- Default box -->
             <div class="box no-padding">
                 <div class="box-body">
@@ -45,6 +63,7 @@
                 </div>
             </div>
             <!-- /.box -->
+
             <!-- Include Google Maps JavaScript API -->
             <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1o6-3uZwjEypw8203VsReL1i0npeUO_g"></script>
             <div id="map" style="width:100%; height: 500px;"></div>
