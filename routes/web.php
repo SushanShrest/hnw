@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\RequestController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\PharmacyController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,6 +34,9 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('backend.dashboard');
 })->middleware(['auth', 'verified'])->name('backend.dashboard');
+
+//chat
+Route::get('/backend/chat/index', [ChatController::class, 'index'])->name('chat.index');
 
 
 // Department display

@@ -36,12 +36,12 @@
             </li>
 
             <li>
-                <a href="#">
-                    <i class="fa fa-comments"></i> <span>Message</span>
-                    <span class="pull-right-container">
-                    </span>
+                <a href="{{ url('/chatify') }}">
+                    <i class="fa fa-comments"></i> <span>Chat</span>
+                    <span class="pull-right-container"></span>
                 </a>
             </li>
+            
 
             <li>
                 <a href="#">
