@@ -6,9 +6,9 @@ use App\Http\Controllers\Backend\DepartmentController;
 use App\Http\Controllers\Backend\DoctorController;
 use App\Http\Controllers\Backend\TimingController;
 use App\Http\Controllers\Backend\ProfileController;
-use App\Http\Controllers\Backend\RequestController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\PharmacyController;
+use App\Http\Controllers\Backend\BecomedoctorController;
 
 
 /*
@@ -45,6 +45,16 @@ Route::get('/backend/departments/display', [DepartmentController::class, 'displa
 // Phamacies display
 Route::get('/backend/pharmacies/display', [PharmacyController::class, 'display'])->name('pharmacies.display');
 
+// Become a Doctor
+Route::middleware('auth')->group(function () {
+Route::get('/backend/becomedoctors/display', [BecomeDoctorController::class, 'display'])->name('becomedoctors.display');
+Route::get('/backend/becomedoctors/usercreate', [BecomeDoctorController::class, 'usercreate'])->name('becomedoctors.usercreate');
+Route::post('/backend/becomedoctors/userstore', [BecomeDoctorController::class, 'userstore'])->name('becomedoctors.userstore');
+Route::get('/backend/becomedoctors/{id}/useredit', [BecomeDoctorController::class, 'useredit'])->name('becomedoctors.useredit');
+Route::put('/backend/becomedoctors/{id}/userupdate', [BecomedoctorController::class, 'userupdate'])->name('becomedoctors.userupdate');
+Route::get('/backend/becomedoctors/{id}/usershow', [BecomedoctorController::class, 'usershow'])->name('becomedoctors.usershow');
+});
+
 // Admin Area Routes
 Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'backend'], function () {
 
@@ -60,6 +70,9 @@ Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'backend'], fu
     // PHARMACIES ROUTES
     Route::resource('pharmacies', PharmacyController::class)->except(["display"]);
 
+    // BECOMEDOCTOR ROUTES
+    Route::resource('becomedoctors', BecomedoctorController::class);
+
 });
 
 // Doctor Area Routes
@@ -69,10 +82,6 @@ Route::group(['middleware' => ['auth', 'role:doctor'], 'prefix' => 'backend'], f
 
 });
 
-
-Route::middleware(['auth'])->group(function () {
-    Route::resource('requests', RequestController::class);
-});
 
  // PROFILE ROUTES
 Route::middleware('auth')->group(function () {

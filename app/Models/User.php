@@ -42,13 +42,18 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function requests()
-    {
-        return $this->hasMany(Request::class);
-    }
+    // public function requests()
+    // {
+    //     return $this->hasMany(Request::class);
+    // }
 
     public function doctor()
     {
         return $this->hasOne(Doctor::class);
+    }
+
+    public function becomedoctor()
+    {
+        return $this->hasOne(Becomedoctor::class);
     }
 }

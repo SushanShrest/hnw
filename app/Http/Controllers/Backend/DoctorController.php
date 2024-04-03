@@ -3,163 +3,90 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Doctor;
-use App\Models\Department;
-use Illuminate\Http\Request; 
+use Illuminate\Http\Request;
+use App\Models\Becomedoctor;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class DoctorController extends Controller
+class BecomedoctorController extends Controller
 {
-    protected $doctor;
-    protected $department;
-    protected $baseRoute = 'doctors.index';
-    protected $viewPath = 'backend.doctors';
+    protected $becomedoctor;
+    protected $baseRoute = 'becomedoctors.index';
+    protected $viewPath = 'backend.becomedoctors';
 
-    public function __construct(Doctor $doctor, Department $department)
+    public function __construct(Becomedoctor $becomedoctor)
     {
-        $this->doctor = $doctor;
-        $this->department = $department;
+        $this->becomedoctor = $becomedoctor;
     }
 
     public function index()
     {
-        $doctors = $this->doctor->get();
-        $departments = $this->department->all(); // Correct variable name
-
-        return view($this->viewPath . '.index', compact('doctors', 'departments')); // Pass departments to the view
+        $becomedoctors = $this->becomedoctor->get();
+        return view($this->viewPath . '.index', compact('becomedoctors'));
     }
 
     public function create()
     {
-        $departments = $this->department->all();
-        return view($this->viewPath . '.create', compact('departments'));
+        return view($this->viewPath . '.create');
     }
-
 
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6',
-            'department_id' => 'nullable|exists:departments,id',
-            'status' => 'required',
-            'gender' => 'required',
-            'experience' => 'required|integer',
-            'qualification' => 'required',
+            'user_id' => 'required|exists:users,id',
+            'medical_license' => 'required|string',
+            'file' => 'required|string',
+            'status' => 'required|string'
         ]);
-    
+
         try {
-            // Create a new user
-            $user = \App\Models\User::create([
-                'name' => $validatedData['name'],
-                'email' => $validatedData['email'],
-                'password' => Hash::make($validatedData['password']),
-            ]);
-    
-            // Create a new doctor associated with the user
-            $doctor = $this->doctor->create([
-                'name' => $validatedData['name'],
-                'email' => $validatedData['email'],
-                'password' => $validatedData['password'],
-                'department_id' => $validatedData['department_id'],
-                'status' => $validatedData['status'],
-                'gender' => $validatedData['gender'],
-                'experience' => $validatedData['experience'],
-                'qualification' => $validatedData['qualification'],
-            ]);
-    
-            // Optionally, you can assign the role here if needed
-            $user->assignRole('doctor');
-    
-            return redirect()->route($this->baseRoute)->with('success', 'Doctor created successfully.');
-        } catch (Exception $e) {
+            $becomedoctor = $this->becomedoctor->create($validatedData);
+            return redirect()->route($this->baseRoute)->with('success', 'Becomedoctor created successfully.');
+        } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return back()->withInput()->with('error', 'Failed to create doctor.');
+            return back()->withInput()->with('error', 'Failed to create becomedoctor.');
         }
     }
 
     public function edit($id)
-{
-    $doctor = $this->doctor->findOrFail($id);
-    $departments = $this->department->all();
-    return view($this->viewPath . '.edit', compact('doctor', 'departments'));
-}
-
-public function update(Request $request, $id)
-{
-    $validatedData = $request->validate([
-        'name' => 'required',
-        'email' => 'required|email|unique:users,email,' . $id,
-        'password' => 'nullable|min:6',
-        'department_id' => 'required|exists:departments,id',
-        'status' => 'required',
-        'gender' => 'required',
-        'experience' => 'required|integer',
-        'qualification' => 'required',
-    ]);
-
-    try {
-        $doctor = $this->doctor->findOrFail($id);
-        $email = $doctor->email;
-
-        $doctor->update($validatedData);
-
-        // Find the user with the same email as the doctor
-        $user = \App\Models\User::where('email', $email)->first();
-
-        if ($user) {
-            // Update user's name and email
-            $user->update([
-                'name' => $validatedData['name'],
-                'email' => $validatedData['email'],
-            ]);
-
-            // Update user's password if provided
-            if ($request->filled('password')) {
-                $user->update([
-                    'password' => Hash::make($request->input('password')),
-                ]);
-            }
-        }
-
-        return redirect()->route($this->baseRoute)->with('success', 'Doctor updated successfully.');
-    } catch (ModelNotFoundException $e) {
-        return back()->with('error', 'Doctor not found.');
-    } catch (\Exception $e) {
-        Log::error($e->getMessage());
-        return back()->withInput()->with('error', 'Failed to update doctor.');
+    {
+        $becomedoctor = $this->becomedoctor->findOrFail($id);
+        return view($this->viewPath . '.edit', compact('becomedoctor'));
     }
-}
 
-public function destroy($id)
-{
-    try {
-        $doctor = $this->doctor->findOrFail($id);
-        $email = $doctor->email;
+    public function update(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'medical_license' => 'required|string',
+            'file' => 'required|string',
+            'status' => 'required|string'
+        ]);
 
-        // Find the user with the same email as the doctor
-        $user = \App\Models\User::where('email', $email)->first();
-
-        if ($user) {
-            DB::transaction(function () use ($doctor, $user) {
-                $user->delete(); // Delete associated user record
-                $doctor->delete(); // Delete doctor record
-            });
-        } else {
-            $doctor->delete(); // Delete doctor record
+        try {
+            $becomedoctor = $this->becomedoctor->findOrFail($id);
+            $becomedoctor->update($validatedData);
+            return redirect()->route($this->baseRoute)->with('success', 'Becomedoctor updated successfully.');
+        } catch (ModelNotFoundException $e) {
+            return back()->with('error', 'Becomedoctor not found.');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return back()->withInput()->with('error', 'Failed to update becomedoctor.');
         }
-
-        return redirect()->route($this->baseRoute)->with('success', 'Doctor deleted successfully.');
-    } catch (ModelNotFoundException $e) {
-        return back()->with('error', 'Doctor not found.');
-    } catch (\Exception $e) {
-        Log::error($e->getMessage());
-        return back()->withInput()->with('error', 'Failed to delete doctor.');
     }
-}
 
+    public function destroy($id)
+    {
+        try {
+            $becomedoctor = $this->becomedoctor->findOrFail($id);
+            $becomedoctor->delete();
+            return redirect()->route($this->baseRoute)->with('success', 'Becomedoctor deleted successfully.');
+        } catch (ModelNotFoundException $e) {
+            return back()->with('error', 'Becomedoctor not found.');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return back()->with('error', 'Failed to delete becomedoctor.');
+        }
+    }
 }

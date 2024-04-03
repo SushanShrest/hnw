@@ -60,8 +60,8 @@
             </li>
 
             <li>
-                <a href="{{ route('requests.index') }}">
-                    <i class="fa fa-comments"></i> <span>Request for doctor role</span>
+                <a href="{{ route('becomedoctors.display') }}">
+                    <i class="fa fa-comments"></i> <span>Become a doctor</span>
                     <span class="pull-right-container">
                     </span>
                 </a>
@@ -116,6 +116,20 @@
                     {{-- <li><a href="#"><i class="fa fa-shield"></i> Roles</a></li> --}}
                     <li><a href="{{ route('users.index') }}"><i class="fa fa-users"></i> Users</a></li>
                     <li><a href="{{ route('doctors.index') }}"><i class="fa fa-plus"></i> Doctors</a></li>
+                    
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-envelope"></i>
+                    <span>Request Management</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ route('becomedoctors.index') }}"><i class="fa fa-envelope"></i> Request Doctor</a></li>
+                    {{-- <li><a href="{{ route('doctors.index') }}"><i class="fa fa-plus"></i> Doctors</a></li> --}}
                     
                 </ul>
             </li>

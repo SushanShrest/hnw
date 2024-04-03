@@ -29,9 +29,6 @@ class DepartmentController extends Controller
 
     public function create()
     {
-
-        // dd('here');
-        // $this->authorize('create-department');
         $department = $this->department;
         return view($this->viewPath . '.create', compact('department'));
     }
