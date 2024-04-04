@@ -59,7 +59,7 @@ class BecomedoctorController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'medical_license' => 'required|string',
+            'medical_license' => 'required|string|unique:becomedoctors|integer|digits:10',
             'file' => 'nullable|file|mimes:pdf,jpg,jpeg,png',
             'status' => 'required|string',
         ]);
@@ -137,10 +137,10 @@ class BecomedoctorController extends Controller
         }
 
         $request->validate([
-            'medical_license' => 'required|string',
+            'medical_license' => 'required|string|unique:becomedoctors|integer|digits:10',
             'file' => 'required|file|mimes:pdf,jpg,jpeg,png',
             'status' => 'required|string',
-        ]);
+        ]);        
 
         $input = $request->all();
 
@@ -175,7 +175,7 @@ class BecomedoctorController extends Controller
 public function userupdate(Request $request, $id)
 {
     $request->validate([
-        'medical_license' => 'required|string',
+        'medical_license' => 'required|string|unique:becomedoctors|integer|digits:10',
         'file' => 'nullable|file|mimes:pdf,jpg,jpeg,png',
         'status' => 'required|string',
     ]);

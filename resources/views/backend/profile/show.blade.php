@@ -31,9 +31,9 @@
                     <div class="row">
                         <div class="col-md-4 text-center">
                             @if($user->image)
-                                <img src="{{ asset('uploads/profile/' . $user->image) }}" alt="Profile Image" class="img-thumbnail profile-image" style="width: 300px; height: 300px;">
+                                <img src="{{ asset('uploads/profile/' . $user->image) }}" alt="Profile Image" class="img-thumbnail profile-image" style="width: 400px; height: 400px;">
                             @else
-                                <img src="{{ asset('backend/images/dummy_user.png') }}" alt="Dummy Image" class="img-thumbnail profile-image" style="width: 300px; height: 300px;">
+                                <img src="{{ asset('backend/images/dummy_user.png') }}" alt="Dummy Image" class="img-thumbnail profile-image" style="width: 400px; height: 400px;">
                             @endif
                         </div>
                         
@@ -48,10 +48,17 @@
                                     <p class="profile-text"><strong>Gender:</strong> {{ $user->gender ?? 'N/A' }}</p>
                                     <p class="profile-text"><strong>Date of Birth:</strong> {{ $user->dob ?? 'N/A' }}</p>
                                     <p class="profile-text"><strong>Age:</strong> {{ $user->dob ? \Carbon\Carbon::parse($user->dob)->age : 'N/A' }}</p>
-                                    <!-- Add more profile fields here as needed -->
+
+                                    @if($user->type === 'doctor')
+                                    <p class="profile-text"><strong>Department:</strong> {{ $user->doctor->department->department_name ?? 'N/A' }}</p>
+                                    <p class="profile-text"><strong>Qualification:</strong> {{ $user->doctor->qualification ?? 'N/A' }}</p>
+                                    <p class="profile-text"><strong>Experience:</strong> {{ $user->doctor->experience ?? 'N/A' }} years</p>
+                                    <p class="profile-text"><strong>Specialization:</strong> {{ $user->doctor->specialization ?? 'N/A' }}</p>
+                                    <p class="profile-text"><strong>Education:</strong> {{ $user->doctor->education ?? 'N/A' }}</p>
+                                    <p class="profile-text"><strong>Work Places:</strong> {{ $user->doctor->work_places ?? 'N/A' }}</p>
+                                    @endif
                                 </div>
                             </div>
-                            
                         </div>
                     </div>
                 </div>
