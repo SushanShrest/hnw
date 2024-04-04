@@ -99,15 +99,6 @@ public function update(Request $request, $id)
 }
 
 
-
-
-    // public function update(Request $request, $id)
-    // {
-    //     $user = User::findOrFail($id);
-    //     $user->update($request->all());
-    //     return redirect()->route($this->baseRoute)->with('success', 'User updated successfully');
-    // }
-
     /**
      * Remove the specified user from storage.
      *

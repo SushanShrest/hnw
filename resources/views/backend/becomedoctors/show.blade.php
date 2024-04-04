@@ -19,7 +19,11 @@
 
         <!-- Main content -->
         <section class="content">
-
+            <div class="box-header with-border">               
+                <h3 class="box-title"><a class="btn bg-purple btn-flat" href="{{ route('becomedoctors.index') }}"><i
+                            class="fa fa-arrow-left"></i>
+                        &nbsp;Back</a></h3>               
+            </div>
             <!-- Default box -->
             <div class="box no-padding">
                 <div class="box-body">

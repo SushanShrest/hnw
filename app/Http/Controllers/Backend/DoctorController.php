@@ -4,89 +4,98 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Becomedoctor;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+use App\Models\Doctor;
+use App\Models\Department;
 
-class BecomedoctorController extends Controller
+class DoctorController extends Controller
 {
-    protected $becomedoctor;
-    protected $baseRoute = 'becomedoctors.index';
-    protected $viewPath = 'backend.becomedoctors';
-
-    public function __construct(Becomedoctor $becomedoctor)
+    protected $baseRoute = 'doctors.index';
+    protected $viewPath = 'backend.doctors';
+    
+    /**
+     * Display a listing of the doctors.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
     {
-        $this->becomedoctor = $becomedoctor;
+        $searchTerm = $request->input('doctorsearch');
+        $doctors = Doctor::query();
+
+        if ($searchTerm) {
+            $doctors = $this->searchDoctors($doctors, $searchTerm);
+        }
+
+        $doctors = $doctors->get();
+
+        return view($this->viewPath . '.index', compact('doctors', 'searchTerm'));
     }
 
-    public function index()
-    {
-        $becomedoctors = $this->becomedoctor->get();
-        return view($this->viewPath . '.index', compact('becomedoctors'));
-    }
 
-    public function create()
+    /**
+     * Show the form for editing the specified doctor.
+     *
+     * @param  \App\Models\Doctor  $doctor
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Doctor $doctor)
     {
-        return view($this->viewPath . '.create');
+    $departments = Department::all();
+    $user = $doctor->user;
+    return view($this->viewPath . '.edit', compact('doctor', 'user', 'departments'));
     }
-
-    public function store(Request $request)
-    {
-        $validatedData = $request->validate([
-            'user_id' => 'required|exists:users,id',
-            'medical_license' => 'required|string',
-            'file' => 'required|string',
-            'status' => 'required|string'
+    /**
+     * Update the specified doctor in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Doctor  $doctor
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Doctor $doctor)
+    {      
+        $request->validate([
+            'qualification' => 'nullable|string',
+            'experience' => 'nullable|numeric',
+            'specialization' => 'nullable|string',
+            'department_id' => 'nullable|exists:departments,id',
+            'education' => 'nullable|string',
+            'work_places' => 'nullable|string',
         ]);
+       
+        $doctor->update($request->all());
 
-        try {
-            $becomedoctor = $this->becomedoctor->create($validatedData);
-            return redirect()->route($this->baseRoute)->with('success', 'Becomedoctor created successfully.');
-        } catch (\Exception $e) {
-            Log::error($e->getMessage());
-            return back()->withInput()->with('error', 'Failed to create becomedoctor.');
-        }
+        return redirect()->route($this->baseRoute)->with('success', 'Doctor updated successfully.');
     }
 
-    public function edit($id)
+    public function show($id)
     {
-        $becomedoctor = $this->becomedoctor->findOrFail($id);
-        return view($this->viewPath . '.edit', compact('becomedoctor'));
+        $doctor = Doctor::findOrFail($id);
+        $user = $doctor->user; 
+        $departments = Department::all();
+
+        return view($this->viewPath . '.show', compact('user', 'doctor', 'departments'));
     }
 
-    public function update(Request $request, $id)
+    private function searchDoctors($query, $searchTerm)
     {
-        $validatedData = $request->validate([
-            'user_id' => 'required|exists:users,id',
-            'medical_license' => 'required|string',
-            'file' => 'required|string',
-            'status' => 'required|string'
-        ]);
-
-        try {
-            $becomedoctor = $this->becomedoctor->findOrFail($id);
-            $becomedoctor->update($validatedData);
-            return redirect()->route($this->baseRoute)->with('success', 'Becomedoctor updated successfully.');
-        } catch (ModelNotFoundException $e) {
-            return back()->with('error', 'Becomedoctor not found.');
-        } catch (\Exception $e) {
-            Log::error($e->getMessage());
-            return back()->withInput()->with('error', 'Failed to update becomedoctor.');
-        }
+        return $query->whereHas('user', function ($query) use ($searchTerm) {
+            $query->where('name', 'like', '%' . $searchTerm . '%')
+                ->orWhere('contact', 'like', '%' . $searchTerm . '%');
+        })->orWhereHas('department', function ($query) use ($searchTerm) {
+            $query->where('department_name', 'like', '%' . $searchTerm . '%');
+        });
     }
 
-    public function destroy($id)
-    {
-        try {
-            $becomedoctor = $this->becomedoctor->findOrFail($id);
-            $becomedoctor->delete();
-            return redirect()->route($this->baseRoute)->with('success', 'Becomedoctor deleted successfully.');
-        } catch (ModelNotFoundException $e) {
-            return back()->with('error', 'Becomedoctor not found.');
-        } catch (\Exception $e) {
-            Log::error($e->getMessage());
-            return back()->with('error', 'Failed to delete becomedoctor.');
-        }
-    }
+
+    /**
+     * Remove the specified doctor from storage.
+     *
+     * @param  \App\Models\Doctor  $doctor
+     * @return \Illuminate\Http\Response
+     */
+    // public function destroy(Doctor $doctor)
+    // {
+    //     $doctor->delete();
+    //     return redirect()->route($this->baseRoute)->with('success', 'Doctor deleted successfully.');
+    // }
 }

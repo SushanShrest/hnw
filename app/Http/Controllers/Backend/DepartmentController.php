@@ -57,46 +57,6 @@ class DepartmentController extends Controller
         return redirect()->route($this->baseRoute)->with('success', 'Department Saved Successfully!');
     }
 
-    // public function store(DepartmentRequest $request)
-    // {
-    //     // $this->authorize('create-department');
-    //     try {
-    //         //upload file
-    //         $fileName = $this->uploadFile($request->file, 'uploads/departments');
-
-    //         //prepare data
-    //         $input = $request->validated();
-
-    //         //override file name
-    //         $departmentCode = $input['code']; // Assuming 'code' is the attribute containing the department code
-    //         $fileExtension = $request->file->getClientOriginalExtension(); // Get the file extension
-    //         $newFileName = $departmentCode . '.' . $fileExtension; // Construct new file name
-    //         $input['file'] = $newFileName;
-
-    //         $this->department->create($input);
-
-    //     } catch (Exception $e) {
-    //         Log::error($e->getMessage());
-    //         return redirect()->route($this->baseRoute)->with('error', 'Oops! Something went wrong!');
-    //     }
-
-    //     return redirect()->route($this->baseRoute)->with('success', 'Department Saved Successfully!');
-    // }
-
-
-    // public function show($id)
-    // {
-    //     try {
-    //         $department = $this->department->findOrFail($id);
-    //         // $this->authorize('read-department', $department);
-    //     } catch (Exception $e) {
-    //         Log::error($e->getMessage());
-    //         return redirect()->route($this->baseRoute)->with('error', 'Oops! Something went wrong!');
-    //     }
-
-    //     return view($this->viewPath . '.show', compact('department'));
-    // }
-
     public function display()
     {
         // $this->authorize('read-department');
