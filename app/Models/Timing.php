@@ -9,7 +9,14 @@ class Timing extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'day','shift', 'start_time', 'end_time','doctor_id','avg_consultation_time'];
+        'doctor_id',
+        'day',
+        'shift',
+        'start_time',
+        'end_time',
+        'location',
+        'visit_fee',
+    ];
 
     public function doctor()
     {

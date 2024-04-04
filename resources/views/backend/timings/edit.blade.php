@@ -29,7 +29,7 @@
                 <form action="{{ route('timings.update', $timing) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-                    @include('backend.timings.partials.form')
+                    @include('backend.timings.partials.editform')
 
                     <!-- /.box-body -->
                     <div class="box-footer">

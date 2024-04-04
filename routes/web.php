@@ -1,6 +1,5 @@
 <?php
 
-// use App\Http\Controllers\Backend\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\DepartmentController;
 use App\Http\Controllers\Backend\DoctorController;
@@ -26,10 +25,6 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/dashboard', function () {
     return view('backend.dashboard');
@@ -73,12 +68,17 @@ Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'backend'], fu
     // BECOMEDOCTOR ROUTES
     Route::resource('becomedoctors', BecomedoctorController::class);
 
+    // TIMING ROUTES
+    Route::resource('timings', TimingController::class);
+    Route::get('/backend/timings/adminindex', [TimingController::class, 'adminindex'])->name('timings.adminindex');
+
+
 });
 
 // Doctor Area Routes
 Route::group(['middleware' => ['auth', 'role:doctor'], 'prefix' => 'backend'], function () {
-    // TIMING ROUTES
-    Route::resource('timings', TimingController::class);
+
+    //Nothing at the moment.
 
 });
 
@@ -89,6 +89,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 });
+
+
+//For both admin and doctor.
+Route::group(['middleware' => ['auth', 'role:doctor|admin'], 'prefix' => 'backend'], function () {
+    // TIMING ROUTES
+    Route::resource('timings', TimingController::class)->except("adminindex");
+});
+
 
 
 require __DIR__.'/auth.php';

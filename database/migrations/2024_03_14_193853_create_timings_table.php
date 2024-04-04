@@ -9,21 +9,21 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
-        Schema::create('timings', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('doctor_id')->constrained()->onDelete('cascade');
-            $table->string('day');
-            $table->unsignedTinyInteger('shift'); // 1-3 shifts
-            $table->time('start_time');
-            $table->time('end_time');
-            $table->unsignedSmallInteger('avg_consultation_time'); // In minutes
-            $table->timestamps();
-
-            $table->foreign('doctor_id')->references('id')->on('doctors');
-        });
-    }
+    public function up()
+{
+    Schema::create('timings', function (Blueprint $table) {
+        $table->id();
+        $table->unsignedBigInteger('doctor_id');
+        $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade');
+        $table->string('day');
+        $table->string('shift');
+        $table->time('start_time');
+        $table->time('end_time');
+        $table->string('location');
+        $table->integer('visit_fee');
+        $table->timestamps();
+    });
+}
 
     /**
      * Reverse the migrations.

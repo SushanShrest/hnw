@@ -1,12 +1,13 @@
- <!-- Table showing existing timings -->
- <table class="table">
+<!-- Table showing existing timings -->
+<table class="table">
     <thead>
         <tr>
             <th>Day</th>
             <th>Shift</th>
             <th>Start Time</th>
             <th>End Time</th>
-            <th>Avg Consultation Time (min)</th>
+            <th>Location</th>
+            <th>Visit Fee</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -17,14 +18,17 @@
             <td>{{ $timing->shift }}</td>
             <td>{{ $timing->start_time }}</td>
             <td>{{ $timing->end_time }}</td>
-            <td>{{ $timing->avg_consultation_time }}</td>
-            <td>
-                <a href="{{ route('timings.edit', $timing->id) }}" class="btn btn-sm btn-primary">Edit</a>
-                <form action="{{ route('timings.destroy', $timing->id) }}" method="POST" style="display: inline;">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this timing?')">Delete</button>
-                </form>
+            <td>{{ $timing->location }}</td>
+            <td>{{ $timing->visit_fee }}</td>
+            <td>                       
+                <a href="{{ route('timings.edit', $timing) }}" class="btn btn-info btn-xs"> <i
+                        class="fa fa-pencil"></i></a>
+    
+                @include('backend.partials.delete_modal', [
+                    'id' => $timing->id,
+                    'title' => $timing->day,
+                    'route' => route('timings.destroy', $timing),
+                ])
             </td>
         </tr>
         @endforeach

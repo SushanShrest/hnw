@@ -81,7 +81,7 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ route('timings.index') }}"><i class="fa fa-shield"></i> Timings</a></li>
+                    <li><a href="{{ route('timings.index') }}"><i class="fa fa-calendar-check-o"></i> Timings</a></li>
                    
                 </ul>
             </li>
@@ -129,6 +129,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{ route('becomedoctors.index') }}"><i class="fa fa-envelope"></i> Request Doctor</a></li>
+                    <li><a href="{{ route('timings.adminindex') }}"><i class="fa fa-calendar-check-o"></i> Timings</a></li>
                     {{-- <li><a href="{{ route('doctors.index') }}"><i class="fa fa-plus"></i> Doctors</a></li> --}}
                     
                 </ul>

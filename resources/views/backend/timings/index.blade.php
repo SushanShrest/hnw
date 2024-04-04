@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('backend-title', 'Timingss List')
+@section('backend-title', 'Timings List')
 @section('page-specific-css')
 @endsection
 @section('backend-content')
@@ -12,22 +12,23 @@
             </h1>
             <ol class="breadcrumb">
                 <li><a href="{{ route('backend.dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-                <li><a href="{{ route('timings.index') }}">Timingss</a></li>
+                <li><a href="{{ route('timings.index') }}">Timings</a></li>
                 <li class="active">List</li>
             </ol>
         </section>
 
         <!-- Main content -->
         <section class="content">
-
             <!-- Default box -->
             <div class="box no-padding">
                 <div class="box-header with-border">
-                    {{-- @can('create-category') --}}
-                    <h3 class="box-title"><a class="btn bg-purple btn-flat" href="{{ route('timings.create') }}"><i
-                                class="fa fa-plus"></i>
-                            &nbsp;Add Timingss</a></h3>
-                    {{-- @endcan --}}
+                    <form action="{{ route('timings.store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf 
+                        @include('backend.timings.partials.createform')
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
                 </div>
                 <div class="box-body">
                     @include('backend.timings.partials.list')
