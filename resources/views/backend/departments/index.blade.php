@@ -4,7 +4,6 @@
 @endsection
 @section('backend-content')
     <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
                 Department <small>List</small>
@@ -23,11 +22,9 @@
             <!-- Default box -->
             <div class="box no-padding">
                 <div class="box-header with-border">
-                    {{-- @can('create-category') --}}
                     <h3 class="box-title"><a class="btn bg-purple btn-flat" href="{{ route('departments.create') }}"><i
                                 class="fa fa-plus"></i>
                             &nbsp;Add Department</a></h3>
-                    {{-- @endcan --}}
                 </div>
                 <div class="box-body">
                     @include('backend.departments.partials.list')

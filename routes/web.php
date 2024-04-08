@@ -26,10 +26,10 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
-
 Route::get('/dashboard', function () {
     return view('backend.dashboard');
 })->middleware(['auth', 'verified'])->name('backend.dashboard');
+
 
 //chat
 Route::get('/backend/chat/index', [ChatController::class, 'index'])->name('chat.index');

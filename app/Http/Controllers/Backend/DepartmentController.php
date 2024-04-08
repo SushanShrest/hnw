@@ -21,8 +21,7 @@ class DepartmentController extends Controller
 
     public function index()
     {
-        // $this->authorize('read-department');
-        $departments = $this->department->get();
+        $departments = $this->department->paginate(10);
         return view($this->viewPath . '.index', compact('departments'));
     }
 

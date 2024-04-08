@@ -18,7 +18,7 @@ class PharmacyController extends Controller
      */
     public function index(Request $request)
     {
-        $searchTerm = $request->input('PharmacySearch', ''); // Get search term from request
+        $searchTerm = $request->input('PharmacySearch', '');
         $pharmacies = $this->searchPharmacies($searchTerm);
         return view($this->viewPath . '.index', compact('pharmacies', 'searchTerm'));
     }

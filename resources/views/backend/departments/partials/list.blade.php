@@ -11,7 +11,7 @@
         @if ($departments->isNotEmpty())
             @foreach ($departments as $department)
                 <tr>
-                    <td>{{ $loop->index + 1 }}</td>
+                    <td>{{ (($departments->currentPage() - 1) * $departments->perPage()) + $loop->iteration }}</td>
                     <td>{{ $department->department_name }}</td>
                     <td>{{ $department->code }}</td>
                     <td>                       
@@ -34,3 +34,25 @@
 
     </tbody>
 </table>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item {{ ($departments->currentPage() == 1) ? ' disabled' : '' }}">
+            <a class="page-link" href="{{ $departments->previousPageUrl() }}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+            </a>
+        </li>
+        @for ($i = 1; $i <= $departments->lastPage(); $i++)
+            <li class="page-item {{ ($departments->currentPage() == $i) ? ' active' : '' }}">
+                <a class="page-link" href="{{ $departments->url($i) }}">{{ $i }}</a>
+            </li>
+        @endfor
+        <li class="page-item {{ ($departments->currentPage() == $departments->lastPage()) ? ' disabled' : '' }}">
+            <a class="page-link" href="{{ $departments->nextPageUrl() }}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+    </ul>
+</nav>

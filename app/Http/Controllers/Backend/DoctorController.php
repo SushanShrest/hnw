@@ -26,7 +26,7 @@ class DoctorController extends Controller
             $doctors = $this->searchDoctors($doctors, $searchTerm);
         }
 
-        $doctors = $doctors->get();
+        $doctors = $doctors->paginate(10);
 
         return view($this->viewPath . '.index', compact('doctors', 'searchTerm'));
     }
@@ -86,16 +86,4 @@ class DoctorController extends Controller
         });
     }
 
-
-    /**
-     * Remove the specified doctor from storage.
-     *
-     * @param  \App\Models\Doctor  $doctor
-     * @return \Illuminate\Http\Response
-     */
-    // public function destroy(Doctor $doctor)
-    // {
-    //     $doctor->delete();
-    //     return redirect()->route($this->baseRoute)->with('success', 'Doctor deleted successfully.');
-    // }
 }

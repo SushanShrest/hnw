@@ -37,7 +37,7 @@ class BecomedoctorController extends Controller
         $query->where('status', $request->status);
     }
 
-    $becomedoctors = $query->get();
+    $becomedoctors = $query->paginate(10);
 
     return view($this->viewPath . '.index', compact('becomedoctors'));
 }

@@ -12,7 +12,7 @@
         @if ($becomedoctors->isNotEmpty())
             @foreach ($becomedoctors as $becomedoctor)
                 <tr>
-                    <td>{{ $loop->index + 1 }}</td>
+                    <td>{{ (($becomedoctors->currentPage() - 1) * $becomedoctors->perPage()) + $loop->iteration }}</td>
                     <td>{{ $becomedoctor->user->name }}</td>
                     <td>{{ $becomedoctor->medical_license }}</td>
                     <td>{{ $becomedoctor->status }}</td>
@@ -42,3 +42,24 @@
         @endif
     </tbody>
 </table>
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item {{ ($becomedoctors->currentPage() == 1) ? ' disabled' : '' }}">
+            <a class="page-link" href="{{ $becomedoctors->previousPageUrl() }}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+            </a>
+        </li>
+        @for ($i = 1; $i <= $becomedoctors->lastPage(); $i++)
+            <li class="page-item {{ ($becomedoctors->currentPage() == $i) ? ' active' : '' }}">
+                <a class="page-link" href="{{ $becomedoctors->url($i) }}">{{ $i }}</a>
+            </li>
+        @endfor
+        <li class="page-item {{ ($becomedoctors->currentPage() == $becomedoctors->lastPage()) ? ' disabled' : '' }}">
+            <a class="page-link" href="{{ $becomedoctors->nextPageUrl() }}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+    </ul>
+</nav>
