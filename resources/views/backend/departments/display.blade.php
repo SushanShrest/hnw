@@ -77,7 +77,7 @@
                                 {{ $department->description }}
                             </div>
                             <div style="text-align: center;">
-                                <a href="#" class="btn btn-primary">View Doctors</a>
+                                <a href="{{ route('appointments.viewdoctor', $department) }}" class="btn btn-primary">View Doctors</a>
                             </div>
                         </div>
                     </div>

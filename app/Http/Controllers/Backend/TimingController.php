@@ -73,7 +73,6 @@ class TimingController extends Controller
     {
         $timing = $this->timing->findOrFail($id);
 
-        // Validate request data
         $validatedData = $request->validate([
             'day' => 'required',
             'shift' => [
@@ -110,10 +109,8 @@ class TimingController extends Controller
 
     public function adminindex(Request $request)
     {
-        // Start with the base query for timings
         $query = $this->timing->query();
 
-        // Check if search term is provided
         if ($request->has('timingSearch')) {
             $searchTerm = $request->timingSearch;
 

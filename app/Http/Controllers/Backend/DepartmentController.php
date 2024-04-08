@@ -59,7 +59,6 @@ class DepartmentController extends Controller
 
     public function display()
     {
-        // $this->authorize('read-department');
         $departments = $this->department->get();
         return view($this->viewPath . '.display', compact('departments'));
     }

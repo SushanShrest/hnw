@@ -3,13 +3,13 @@
         <div class="form-group col-md-2">
             <label for="day">Select a Day:</label>
             <select name="day" id="day" class="form-control">
-                <option value="sun" {{ old('day', $timing->day) == 'sun' ? 'selected' : '' }}>Sunday</option>
-                <option value="mon" {{ old('day', $timing->day) == 'mon' ? 'selected' : '' }}>Monday</option>
-                <option value="tue" {{ old('day', $timing->day) == 'tue' ? 'selected' : '' }}>Tuesday</option>
-                <option value="wed" {{ old('day', $timing->day) == 'wed' ? 'selected' : '' }}>Wednesday</option>
-                <option value="thu" {{ old('day', $timing->day) == 'thu' ? 'selected' : '' }}>Thursday</option>
-                <option value="fri" {{ old('day', $timing->day) == 'fri' ? 'selected' : '' }}>Friday</option>
-                <option value="sat" {{ old('day', $timing->day) == 'sat' ? 'selected' : '' }}>Saturday</option>
+                <option value="sunday" {{ old('day', $timing->day) == 'sun' ? 'selected' : '' }}>Sunday</option>
+                <option value="monday" {{ old('day', $timing->day) == 'mon' ? 'selected' : '' }}>Monday</option>
+                <option value="tuesday" {{ old('day', $timing->day) == 'tue' ? 'selected' : '' }}>Tuesday</option>
+                <option value="wednesday" {{ old('day', $timing->day) == 'wed' ? 'selected' : '' }}>Wednesday</option>
+                <option value="thursday" {{ old('day', $timing->day) == 'thu' ? 'selected' : '' }}>Thursday</option>
+                <option value="friday" {{ old('day', $timing->day) == 'fri' ? 'selected' : '' }}>Friday</option>
+                <option value="saturday" {{ old('day', $timing->day) == 'sat' ? 'selected' : '' }}>Saturday</option>
             </select>
             @error('day')
                 <span class="help-block">{{ $message }}</span>

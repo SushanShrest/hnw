@@ -30,8 +30,7 @@
 
                 <ul class="treeview-menu">
                     <li><a href="{{ route('departments.display') }}"> <i class="fa fa-building"></i> Department</a></li>
-                    {{-- <li><a href="#" ><i class="fa-regular fa-list"></i> List</a></li> --}}p
-
+                    <li><a href="{{ route('appointments.userindex') }}"> <i class="fa fa-building"></i>My Appointments</a></li>
                 </ul>
             </li>
 
@@ -82,7 +81,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{ route('timings.index') }}"><i class="fa fa-calendar-check-o"></i> Timings</a></li>
-                   
+                    <li><a href="{{ route('appointments.doctorindex') }}"><i class="fa fa-calendar-check-o"></i> My Appointments</a></li>
                 </ul>
             </li>
             @endrole
@@ -130,7 +129,7 @@
                 <ul class="treeview-menu">
                     <li><a href="{{ route('becomedoctors.index') }}"><i class="fa fa-envelope"></i> Request Doctor</a></li>
                     <li><a href="{{ route('timings.adminindex') }}"><i class="fa fa-calendar-check-o"></i> Timings</a></li>
-                    {{-- <li><a href="{{ route('doctors.index') }}"><i class="fa fa-plus"></i> Doctors</a></li> --}}
+                    <li><a href="{{ route('appointments.index') }}"><i class="fa fa-calendar-check-o"></i> Appointments</a></li>
                     
                 </ul>
             </li>

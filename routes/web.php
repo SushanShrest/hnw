@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\PharmacyController;
 use App\Http\Controllers\Backend\BecomedoctorController;
+use App\Http\Controllers\Backend\AppointmentController;
 
 
 /*
@@ -49,6 +50,18 @@ Route::get('/backend/becomedoctors/{id}/useredit', [BecomeDoctorController::clas
 Route::put('/backend/becomedoctors/{id}/userupdate', [BecomedoctorController::class, 'userupdate'])->name('becomedoctors.userupdate');
 Route::get('/backend/becomedoctors/{id}/usershow', [BecomedoctorController::class, 'usershow'])->name('becomedoctors.usershow');
 });
+ 
+// Appoinment 
+Route::middleware('auth')->group(function () {
+Route::get('/backend/appointments/viewdoctor/{department}', [AppointmentController::class, 'viewdoctor'])->name('appointments.viewdoctor');
+Route::get('/backend/appointments/doctorbio/{doctor}', [AppointmentController::class, 'doctorBio'])->name('appointments.doctorbio');
+Route::get('/user/appointments/user', [AppointmentController::class, 'userindex'])->name('appointments.userindex');
+Route::get('/backend/appointments/create/{doctor}', [AppointmentController::class, 'create'])->name('appointments.create');
+Route::post('/backend/appointments/store', [AppointmentController::class, 'store'])->name('appointments.store');
+Route::post('/backend/appointments/{appointment}/cancel', [AppointmentController::class, 'cancel'])->name('appointments.cancel');
+Route::get('/backend/users/{user}/appointments/{appointment}', [AppointmentController::class, 'usershow'])->name('appointments.usershow');
+
+});
 
 // Admin Area Routes
 Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'backend'], function () {
@@ -72,14 +85,20 @@ Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'backend'], fu
     Route::resource('timings', TimingController::class);
     Route::get('/backend/timings/adminindex', [TimingController::class, 'adminindex'])->name('timings.adminindex');
 
+    // APPOINTMENT ROUTES
+    Route::get('/backend/appointments', [AppointmentController::class, 'index'])->name('appointments.index');
+    Route::get('appointments/show/{appointment}', [AppointmentController::class, 'show'])->name('appointments.show');
+
 
 });
 
 // Doctor Area Routes
 Route::group(['middleware' => ['auth', 'role:doctor'], 'prefix' => 'backend'], function () {
-
-    //Nothing at the moment.
-
+    
+    //APPOINTMENT ROUTES
+    
+    Route::get('/backend/doctors/{doctor}/appointments/{appointment}', [AppointmentController::class, 'doctorshow'])->name('appointments.doctorshow');
+    Route::get('/backend/appointments/doctor', [AppointmentController::class, 'doctorindex'])->name('appointments.doctorindex');
 });
 
 
@@ -93,8 +112,14 @@ Route::middleware('auth')->group(function () {
 
 //For both admin and doctor.
 Route::group(['middleware' => ['auth', 'role:doctor|admin'], 'prefix' => 'backend'], function () {
+
     // TIMING ROUTES
     Route::resource('timings', TimingController::class)->except("adminindex");
+
+    //APPOINMENT ROUTES
+    Route::post('/backend/appointments/{appointment}/accept', [AppointmentController::class, 'accept'])->name('appointments.accept');
+    Route::post('/backend/appointments/{appointment}/reject', [AppointmentController::class, 'reject'])->name('appointments.reject');
+    Route::post('/backend/appointments/{appointment}/complete', [AppointmentController::class, 'complete'])->name('appointments.complete');
 });
 
 

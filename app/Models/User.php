@@ -42,11 +42,6 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    // public function requests()
-    // {
-    //     return $this->hasMany(Request::class);
-    // }
-
     public function doctor()
     {
         return $this->hasOne(Doctor::class);
@@ -56,4 +51,10 @@ class User extends Authenticatable
     {
         return $this->hasOne(Becomedoctor::class);
     }
+
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class);
+    }
+
 }
