@@ -5,19 +5,11 @@
             <li class="header">MAIN NAVIGATION</li>
             <li>
                 <a href="#">
-                    <i class="fa fa-home"></i></i> <span>Home</span>
+                    <i class="fa fa-home"></i></i> <span>News</span>
                     <span class="pull-right-container">
                     </span>
                 </a>
 
-            </li>
-
-            <li>
-                <a href="#">
-                    <i class="fa fa-file"></i> <span>Records</span>
-                    <span class="pull-right-container">
-                    </span>
-                </a>
             </li>
 
             <li class="treeview">
@@ -29,8 +21,9 @@
                 </a>
 
                 <ul class="treeview-menu">
-                    <li><a href="{{ route('departments.display') }}"> <i class="fa fa-building"></i> Department</a></li>
-                    <li><a href="{{ route('appointments.userindex') }}"> <i class="fa fa-building"></i>My Appointments</a></li>
+                    <li><a href="{{ route('departments.display') }}"> <i class="fa fa-building"></i>View Appointment</a></li>
+                    <li><a href="{{ route('appointments.userindex') }}"> <i class="fa fa-user"></i>My Appointments</a></li>
+                    <li><a href="{{ route('records.userindex') }}"> <i class="fa fa-file-text"></i>My Records</a></li>
                 </ul>
             </li>
 
@@ -73,15 +66,16 @@
             </li> --}}
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-user-secret"></i>
+                    <i class="fa fa-calendar-check-o"></i>
                     <span>Appointment</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ route('timings.index') }}"><i class="fa fa-calendar-check-o"></i> Timings</a></li>
-                    <li><a href="{{ route('appointments.doctorindex') }}"><i class="fa fa-calendar-check-o"></i> My Appointments</a></li>
+                    <li><a href="{{ route('timings.index') }}"><i class="fa fa-calendar"></i> Timings</a></li>
+                    <li><a href="{{ route('appointments.doctorindex') }}"><i class="fa fa-user-md"></i> Docotr Appointments</a></li>
+                    <li><a href="{{ route('records.doctorindex') }}"><i class="fa fa-user-md"></i> Docotr Records</a></li>
                 </ul>
             </li>
             @endrole
@@ -93,7 +87,7 @@
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-building"></i>
-                    <span>Services</span>
+                    <span>Department Control</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
@@ -114,14 +108,14 @@
                 <ul class="treeview-menu">
                     {{-- <li><a href="#"><i class="fa fa-shield"></i> Roles</a></li> --}}
                     <li><a href="{{ route('users.index') }}"><i class="fa fa-users"></i> Users</a></li>
-                    <li><a href="{{ route('doctors.index') }}"><i class="fa fa-plus"></i> Doctors</a></li>
+                    <li><a href="{{ route('doctors.index') }}"><i class="fa fa-user-md"></i> Doctors</a></li>
                     
                 </ul>
             </li>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-envelope"></i>
-                    <span>Request Management</span>
+                    <span>Service Management</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
@@ -129,8 +123,8 @@
                 <ul class="treeview-menu">
                     <li><a href="{{ route('becomedoctors.index') }}"><i class="fa fa-envelope"></i> Request Doctor</a></li>
                     <li><a href="{{ route('timings.adminindex') }}"><i class="fa fa-calendar-check-o"></i> Timings</a></li>
-                    <li><a href="{{ route('appointments.index') }}"><i class="fa fa-calendar-check-o"></i> Appointments</a></li>
-                    
+                    <li><a href="{{ route('appointments.index') }}"><i class="fa fa-exchange"></i> Appointments</a></li>
+                    <li><a href="{{ route('records.index') }}"><i class="fa fa-file-text"></i> Records</a></li>
                 </ul>
             </li>
             @endrole

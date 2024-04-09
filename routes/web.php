@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\PharmacyController;
 use App\Http\Controllers\Backend\BecomedoctorController;
 use App\Http\Controllers\Backend\AppointmentController;
+use App\Http\Controllers\Backend\RecordController;
 
 
 /*
@@ -30,6 +31,9 @@ Route::get('/dashboard', function () {
     return view('backend.dashboard');
 })->middleware(['auth', 'verified'])->name('backend.dashboard');
 
+// Route::get('/feedback', function () {
+//     return view('backend.feedbacks.index');
+// })->middleware(['auth', 'verified'])->name('feedbacks.index');
 
 //chat
 Route::get('/backend/chat/index', [ChatController::class, 'index'])->name('chat.index');
@@ -61,6 +65,10 @@ Route::post('/backend/appointments/store', [AppointmentController::class, 'store
 Route::post('/backend/appointments/{appointment}/cancel', [AppointmentController::class, 'cancel'])->name('appointments.cancel');
 Route::get('/backend/users/{user}/appointments/{appointment}', [AppointmentController::class, 'usershow'])->name('appointments.usershow');
 
+//Records
+Route::get('/backend/user/records', [RecordController::class, 'userindex'])->name('records.userindex');
+Route::get('/record/{record}/user', [RecordController::class, 'usershow'])->name('records.usershow');
+
 });
 
 // Admin Area Routes
@@ -89,16 +97,23 @@ Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'backend'], fu
     Route::get('/backend/appointments', [AppointmentController::class, 'index'])->name('appointments.index');
     Route::get('appointments/show/{appointment}', [AppointmentController::class, 'show'])->name('appointments.show');
 
-
+    // RECORDS ROUTES
+    Route::get('/backend/records', [RecordController::class, 'index'])->name('records.index');
+    Route::get('/record/{record}', [RecordController::class, 'show'])->name('records.show');
 });
 
 // Doctor Area Routes
 Route::group(['middleware' => ['auth', 'role:doctor'], 'prefix' => 'backend'], function () {
     
     //APPOINTMENT ROUTES
-    
     Route::get('/backend/doctors/{doctor}/appointments/{appointment}', [AppointmentController::class, 'doctorshow'])->name('appointments.doctorshow');
     Route::get('/backend/appointments/doctor', [AppointmentController::class, 'doctorindex'])->name('appointments.doctorindex');
+
+    //RECORD ROUTES
+    Route::get('/backend/doctor/records', [RecordController::class, 'doctorindex'])->name('records.doctorindex');
+    Route::get('/record/{record}/doctor', [RecordController::class, 'doctorshow'])->name('records.doctorshow');
+    Route::get('/records/{record}/doctoredit', [RecordController::class, 'doctoredit'])->name('records.doctoredit');
+    Route::put('/records/{record}', [RecordController::class, 'update'])->name('records.update');
 });
 
 

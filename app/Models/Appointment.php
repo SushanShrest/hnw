@@ -30,4 +30,8 @@ class Appointment extends Model
         return $this->belongsTo(Timing::class);
     }
     
+    public function records()
+    {
+        return $this->hasMany(Record::class);
+    }
 }

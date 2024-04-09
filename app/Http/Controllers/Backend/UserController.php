@@ -72,9 +72,7 @@ class UserController extends Controller
         if ($user->type === 'doctor' && $originalUserType !== 'doctor') {
             // Create a new Doctor instance
             $doctor = new Doctor([
-                // You can assign other attributes of the doctor here
                 'user_id' => $user->id,
-                // Assign other attributes like department_id, experience, qualification, etc.
             ]);
             
             // Save the doctor record

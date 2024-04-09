@@ -8,12 +8,29 @@ use App\Models\Appointment;
 use App\Models\Department;
 use App\Models\Doctor;
 use App\Models\Timing;
+use App\Models\Record;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AppointmentController extends Controller
 {
+    public function viewDoctor(Department $department)
+    {
+        $doctors = $department->doctors()->get(); 
+
+        return view('backend.appointments.viewdoctor', compact('department', 'doctors'));
+    }
+
+        public function doctorBio(Doctor $doctor)
+    {
+        // Load the doctor's bio and timings
+        $doctor->load('user', 'timings');
+
+        // Pass the doctor data to the view
+        return view('backend.appointments.doctorbio', compact('doctor'));
+    }
+
 // ADMIN SECTION
 
     public function index(Request $request)
@@ -29,14 +46,12 @@ class AppointmentController extends Controller
             $query->where('status', $status);
         }
 
-        // Filter appointments by user name if search_user is provided
         if ($searchUser) {
             $query->whereHas('user', function ($query) use ($searchUser) {
                 $query->where('name', 'like', "%$searchUser%");
             });
         }
 
-        // Filter appointments by doctor name if search_doctor is provided
         if ($searchDoctor) {
             $query->whereHas('timing.doctor.user', function ($query) use ($searchDoctor) {
                 $query->where('name', 'like', "%$searchDoctor%");
@@ -169,12 +184,24 @@ public function userIndex(Request $request)
     {
         $appointment->update(['status' => 'accepted']);
 
+        // Check if the appointment status is not "completed"
+        if ($appointment->status !== 'completed') {
+            // If appointment status is not "completed", delete the associated records
+            $appointment->records()->delete();
+        }
+
         return redirect()->back()->with('success', 'Appointment accepted successfully!');
     }
+
 
     public function reject(Appointment $appointment)
     {
         $appointment->update(['status' => 'rejected']);
+
+        if ($appointment->status !== 'completed') {
+
+            $appointment->records()->delete();
+        }
 
         return redirect()->back()->with('success', 'Appointment rejected successfully!');
     }
@@ -182,6 +209,18 @@ public function userIndex(Request $request)
     public function complete(Appointment $appointment)
     {
         $appointment->update(['status' => 'completed']);
+
+        // Check if the appointment status is now "completed"
+        if ($appointment->status === 'completed') {
+            // Create a record with appointment details
+            Record::create([
+                'appointment_id' => $appointment->id,
+                // 'followup_plan' => null,
+                // 'issue' => null,
+                // 'treatment' => null,
+                // 'medication' => null,
+            ]);
+        }
 
         return redirect()->back()->with('success', 'Appointment completed successfully!');
     }
