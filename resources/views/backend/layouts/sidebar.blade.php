@@ -4,8 +4,8 @@
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MAIN NAVIGATION</li>
             <li>
-                <a href="#">
-                    <i class="fa fa-home"></i></i> <span>News</span>
+                <a href="{{ route('news.display') }}">
+                    <i class="fa fa-newspaper-o"></i></i> <span>News</span>
                     <span class="pull-right-container">
                     </span>
                 </a>
@@ -87,12 +87,13 @@
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-building"></i>
-                    <span>Department Control</span>
+                    <span>Service Control</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
-                <ul class="treeview-menu">
+                <ul class="treeview-menu">         
+                    <li><a href="{{ route('news.index') }}"><i class="fa fa-newspaper-o"></i> News</a></li>
                     <li><a href="{{ route('departments.index') }}"><i class="fa fa-building"></i> Departments</a></li>
                     <li><a href="{{ route('pharmacies.index') }}"><i class="fa fa-plus"></i> Pharmacies</a></li>
                 </ul>
@@ -115,7 +116,7 @@
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-envelope"></i>
-                    <span>Service Management</span>
+                    <span>Records Management</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>

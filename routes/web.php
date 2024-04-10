@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\PharmacyController;
 use App\Http\Controllers\Backend\BecomedoctorController;
 use App\Http\Controllers\Backend\AppointmentController;
 use App\Http\Controllers\Backend\RecordController;
+use App\Http\Controllers\Backend\NewsController;
 
 
 /*
@@ -69,6 +70,10 @@ Route::get('/backend/users/{user}/appointments/{appointment}', [AppointmentContr
 Route::get('/backend/user/records', [RecordController::class, 'userindex'])->name('records.userindex');
 Route::get('/record/{record}/user', [RecordController::class, 'usershow'])->name('records.usershow');
 
+//News
+Route::get('/backend/news/display', [NewsController::class, 'display'])->name('news.display');
+Route::get('/backend/news/show/{news}', [NewsController::class, 'show'])->name('news.show');
+
 });
 
 // Admin Area Routes
@@ -100,6 +105,9 @@ Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'backend'], fu
     // RECORDS ROUTES
     Route::get('/backend/records', [RecordController::class, 'index'])->name('records.index');
     Route::get('/record/{record}', [RecordController::class, 'show'])->name('records.show');
+
+    // NEWS ROUTES
+    Route::resource('news', NewsController::class)->except(["display", "show"]);
 });
 
 // Doctor Area Routes

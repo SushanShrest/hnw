@@ -45,16 +45,5 @@
             @endif
         </div>
     </div>
-
-    
-    {{-- <div class="form-group row">
-        <div class="col-md-6 @error('file') has-error @enderror">
-            <label class="control-label">Image</label>
-            <input type="file" name="file" class="form-control" accept="image/*" value="{{old('file')}}">
-         @error('file')
-            <span class="help-block">{{ $message }}</span>
-            @enderror
-        </div>
-    </div> --}}
     
 </div>
