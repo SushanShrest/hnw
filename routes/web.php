@@ -29,9 +29,9 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
-Route::get('/dashboard', function () {
+Route::get('/home', function () {
     return view('backend.dashboard');
-})->middleware(['auth', 'verified'])->name('backend.dashboard');
+})->middleware(['auth', 'verified'])->name('backend.home');
 
 
 //chat

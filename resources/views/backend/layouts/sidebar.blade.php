@@ -4,12 +4,19 @@
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MAIN NAVIGATION</li>
             <li>
+                <a href="{{ route('backend.home') }}">
+                    <i class="fa fa-home"></i></i> <span>Home</span>
+                    <span class="pull-right-container">
+                    </span>
+                </a>
+
+            </li>
+            <li>
                 <a href="{{ route('news.display') }}">
                     <i class="fa fa-newspaper-o"></i></i> <span>News</span>
                     <span class="pull-right-container">
                     </span>
                 </a>
-
             </li>
 
             <li class="treeview">
@@ -33,7 +40,6 @@
                     <span class="pull-right-container"></span>
                 </a>
             </li>
-            
 
             <li>
                 <a href="{{ route('messages.userindex') }}">
