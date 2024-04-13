@@ -31,7 +31,7 @@
                         </div>
                         <!-- Right side -->
                         <div class="col-md-6">
-                            <img src="{{ asset('uploads/news/' . $news->image) }}" alt="{{ $news->title }}" class="img-thumbnail" style="width: 400px; height: 400px;">
+                            <img src="{{ asset('uploads/news/' . $news->image) }}" alt="{{ $news->title }}" class="img-thumbnail" style="width: 100%; height: 80%; object-fit">
                         </div>
                     </div>
                 </div>

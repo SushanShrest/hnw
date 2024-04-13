@@ -35,7 +35,6 @@ class DepartmentController extends Controller
 
     public function store(DepartmentRequest $request)
     {
-        // $this->authorize('create-department');
         try {
             //upload file
             $fileName = $this->uploadFile($request->file, 'uploads/departments');
@@ -67,7 +66,7 @@ class DepartmentController extends Controller
     {
         try {
             $department = $this->department->findOrFail($id);
-            // $this->authorize('update-department', $department);
+
         } catch (Exception $e) {
             Log::error($e->getMessage());
             return redirect()->route($this->baseRoute . '.index')->with('error', 'Oops! Something went wrong!');
@@ -81,7 +80,6 @@ class DepartmentController extends Controller
     {
         try {
             $department = $this->department->findOrFail($id);
-            // $this->authorize('update-department', $department);
            
             //prepare data
             $input = $request->validated();
@@ -116,7 +114,7 @@ class DepartmentController extends Controller
     {
         try {
             $department = $this->department->findOrFail($id);
-            // $this->authorize('delete-department', $department);
+
             $department->delete();
         } catch (Exception $e) {
             Log::error($e->getMessage());
@@ -126,7 +124,7 @@ class DepartmentController extends Controller
         return redirect()->route($this->baseRoute)->with('success', 'Department Deleted Successfully!');
     }
 
-    private function uploadFile($image, $path) // Uploads an image file to the specified path and returns the generated filename.
+    private function uploadFile($image, $path)
     {
         if (!file_exists($path)) {
             mkdir($path, 077, true); // Create the directory if it doesn't exist.
@@ -136,7 +134,7 @@ class DepartmentController extends Controller
         return $fname;
     }
 
-    private function deleteFile($image, $path) //Deletes a file from the specified path if it exists and is not empty.
+    private function deleteFile($image, $path)
     {
         //check if file exists or not.
         if (file_exists($path . $image) && !empty($image)) {

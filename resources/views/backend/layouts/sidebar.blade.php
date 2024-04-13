@@ -29,15 +29,15 @@
 
             <li>
                 <a href="{{ url('/chatify') }}">
-                    <i class="fa fa-comments"></i> <span>Chat</span>
+                    <i class="fa fa-commenting"></i> <span>Chat</span>
                     <span class="pull-right-container"></span>
                 </a>
             </li>
             
 
             <li>
-                <a href="#">
-                    <i class="fa fa-envelope"></i> <span>Feedback</span>
+                <a href="{{ route('messages.userindex') }}">
+                    <i class="fa fa-comments"></i> <span>Feedback</span>
                     <span class="pull-right-container">
                     </span>
                 </a>
@@ -53,7 +53,7 @@
 
             <li>
                 <a href="{{ route('becomedoctors.display') }}">
-                    <i class="fa fa-comments"></i> <span>Become a doctor</span>
+                    <i class="fa fa-envelope"></i> <span>Become a doctor</span>
                     <span class="pull-right-container">
                     </span>
                 </a>
@@ -62,8 +62,6 @@
             {{-- Doctor Section --}}
             @role('doctor')
             <li class="header">Doctor</li>
-            {{-- <li><a href="#"><i class="fa fa-users"></i> <span>User managements</span></a>
-            </li> --}}
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-calendar-check-o"></i>
@@ -126,6 +124,7 @@
                     <li><a href="{{ route('timings.adminindex') }}"><i class="fa fa-calendar-check-o"></i> Timings</a></li>
                     <li><a href="{{ route('appointments.index') }}"><i class="fa fa-exchange"></i> Appointments</a></li>
                     <li><a href="{{ route('records.index') }}"><i class="fa fa-file-text"></i> Records</a></li>
+                    <li><a href="{{ route('messages.index') }}"><i class="fa fa-comments"></i> Feedbacks</a></li>
                 </ul>
             </li>
             @endrole

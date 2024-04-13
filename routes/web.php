@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\BecomedoctorController;
 use App\Http\Controllers\Backend\AppointmentController;
 use App\Http\Controllers\Backend\RecordController;
 use App\Http\Controllers\Backend\NewsController;
+use App\Http\Controllers\Backend\MessageController;
 
 
 /*
@@ -32,9 +33,6 @@ Route::get('/dashboard', function () {
     return view('backend.dashboard');
 })->middleware(['auth', 'verified'])->name('backend.dashboard');
 
-// Route::get('/feedback', function () {
-//     return view('backend.feedbacks.index');
-// })->middleware(['auth', 'verified'])->name('feedbacks.index');
 
 //chat
 Route::get('/backend/chat/index', [ChatController::class, 'index'])->name('chat.index');
@@ -74,6 +72,13 @@ Route::get('/record/{record}/user', [RecordController::class, 'usershow'])->name
 Route::get('/backend/news/display', [NewsController::class, 'display'])->name('news.display');
 Route::get('/backend/news/show/{news}', [NewsController::class, 'show'])->name('news.show');
 
+//Messages
+Route::get('messages/user', [MessageController::class, 'userindex'])->name('messages.userindex');
+Route::get('/messages/create', [MessageController::class, 'create'])->name('messages.create');
+Route::post('/messages', [MessageController::class, 'store'])->name('messages.store');
+Route::get('/messages/{message}/usershow', [MessageController::class, 'usershow'])->name('messages.usershow');
+
+
 });
 
 // Admin Area Routes
@@ -108,6 +113,9 @@ Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'backend'], fu
 
     // NEWS ROUTES
     Route::resource('news', NewsController::class)->except(["display", "show"]);
+
+    // MESSAGES ROUTES
+    Route::resource('messages', MessageController::class)->except(["create", "store"]);
 });
 
 // Doctor Area Routes
@@ -144,7 +152,6 @@ Route::group(['middleware' => ['auth', 'role:doctor|admin'], 'prefix' => 'backen
     Route::post('/backend/appointments/{appointment}/reject', [AppointmentController::class, 'reject'])->name('appointments.reject');
     Route::post('/backend/appointments/{appointment}/complete', [AppointmentController::class, 'complete'])->name('appointments.complete');
 });
-
 
 
 require __DIR__.'/auth.php';
