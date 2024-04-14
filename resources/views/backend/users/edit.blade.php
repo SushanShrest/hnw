@@ -9,11 +9,6 @@
             <h1>
                 Edit User
             </h1>
-            <ol class="breadcrumb">
-                <li><a href="{{ route('backend.dashboard') }}"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="{{ route('users.index') }}">User</a></li>
-                <li class="active">Edit</li>
-            </ol>
         </section>
 
         <!-- Main content -->

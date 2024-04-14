@@ -13,7 +13,7 @@ class CreateAppointmentsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('timing_id');
-            $table->foreign('timing_id')->references('id')->on('timings')->onDelete('cascade');// dont cascade
+            $table->foreign('timing_id')->references('id')->on('timings')->onDelete('cascade');
             $table->date('date');
             $table->string('status')->default('pending');
             $table->string('location')->nullable();

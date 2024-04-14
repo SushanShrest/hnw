@@ -12,11 +12,11 @@ return new class extends Migration
     {
         Schema::create('becomedoctors', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id'); // Add user_id column
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('medical_license');
             $table->string('file');
-            $table->string('status')->default('pending'); // pending, accepted, rejected
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }

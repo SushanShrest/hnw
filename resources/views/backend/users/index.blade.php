@@ -10,11 +10,6 @@
                 User <small>List</small>
 
             </h1>
-            <ol class="breadcrumb">
-                <li><a href="{{ route('backend.dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-                <li><a href="{{ route('users.index') }}">Users</a></li>
-                <li class="active">List</li>
-            </ol>
         </section>
 
         <!-- Main content -->
