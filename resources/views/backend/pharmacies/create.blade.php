@@ -10,7 +10,7 @@
                 Create Pharmacies
             </h1>
             <ol class="breadcrumb">
-                <li><a href="{{ route('backend.dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+                <li><a href="{{ route('backend.home') }}"><i class="fa fa-home"></i> Home</a></li>
                 <li><a href="{{ route('pharmacies.index') }}">Pharmacies</a></li>
                 <li class="active">Create</li>
             </ol>

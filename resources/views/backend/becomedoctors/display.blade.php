@@ -18,11 +18,9 @@
             <!-- Default box -->
             <div class="box no-padding">
                 <div class="box-header with-border">
-                    {{-- @can('create-category') --}}
                     <h3 class="box-title"><a class="btn bg-purple btn-flat" href="{{ route('becomedoctors.usercreate') }}"><i
                                 class="fa fa-plus"></i>
                             &nbsp;Add BecomeDoctor</a></h3>
-                    {{-- @endcan --}}
                 </div>
                 <div class="box-body">
                     <table class="table table-bordered table-striped">
