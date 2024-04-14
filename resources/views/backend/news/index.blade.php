@@ -9,11 +9,6 @@
                 New <small>List</small>
 
             </h1>
-            <ol class="breadcrumb">
-                <li><a href="{{ route('backend.dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-                <li><a href="{{ route('news.index') }}">News</a></li>
-                <li class="active">List</li>
-            </ol>
         </section>
 
         <!-- Main content -->
@@ -21,6 +16,7 @@
 
             <!-- Default box -->
             <div class="box no-padding">
+                
                 <div class="box-header with-border">
                     <h3 class="box-title"><a class="btn bg-purple btn-flat" href="{{ route('news.create') }}"><i
                                 class="fa fa-plus"></i>

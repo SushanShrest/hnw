@@ -9,18 +9,19 @@
             <h1>
                 Create New
             </h1>
-            <ol class="breadcrumb">
-                <li><a href="{{ route('backend.dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-                <li><a href="{{ route('news.index') }}">News</a></li>
-                <li class="active">Create</li>
-            </ol>
         </section>
 
         <!-- Main content -->
         <section class="content">
+            <div class="box-header with-border">               
+                <h3 class="box-title">
+                    <a class="btn bg-purple btn-flat" href="{{ route('news.index') }}">
+                        <i class="fa fa-arrow-left"></i> &nbsp;Back
+                    </a>
+                </h3>               
+            </div>    
             <div class="row">
                 <div class="col-md-12">
-                    <!-- general form elements -->
 
                     <!-- Default box -->
                     <div class="box box-primary">

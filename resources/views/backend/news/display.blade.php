@@ -47,24 +47,29 @@
                             </div>                            
                         </div>
                     </div>
-                    {{-- <div style="width: 100%; max-width: 350px; margin: 10px;">
-                <div style="height: 420px; background-color: #598; padding: 15px; border: 1px solid #ccc; border-radius: 5px; display: flex; flex-direction: column; justify-content: space-between;">
-                    <div style="font-size: 2rem; color: #ffffff; font-weight: bold; margin-bottom: 10px;">
-                        {{ $new->title }}
-                    </div>
-                    <div style="margin-bottom: 10px;">
-                        <img src="{{ asset('uploads/news/' . $new->image) }}" style="width: 100%; height: 250px; object-fit: cover; border-radius: 5px;" alt="{{ $new->title }}">
-                    </div>
-                    <div style="font-size: 1.3rem; color: #ffffff; margin-bottom: auto;font-weight: normal;">
-                        {{ $new->description }}
-                    </div>
-                    <div style="text-align: center;">
-                        <a href="{{ route('news.show', $new) }}" class="btn btn-primary">View News</a>
-                    </div>
-                </div>
-            </div> --}}
                 @endforeach
             @endif
         </section>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item {{ ($news->currentPage() == 1) ? ' disabled' : '' }}">
+                    <a class="page-link" href="{{ $news->previousPageUrl() }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+                @for ($i = 1; $i <= $news->lastPage(); $i++)
+                    <li class="page-item {{ ($news->currentPage() == $i) ? ' active' : '' }}">
+                        <a class="page-link" href="{{ $news->url($i) }}">{{ $i }}</a>
+                    </li>
+                @endfor
+                <li class="page-item {{ ($news->currentPage() == $news->lastPage()) ? ' disabled' : '' }}">
+                    <a class="page-link" href="{{ $news->nextPageUrl() }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </div>
 @endsection

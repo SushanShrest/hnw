@@ -9,16 +9,17 @@
             <h1>
                 Edit News
             </h1>
-            <ol class="breadcrumb">
-                <li><a href="{{ route('backend.dashboard') }}"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="{{ route('news.index') }}">News</a></li>
-                <li class="active">Edit</li>
-            </ol>
         </section>
 
         <!-- Main content -->
         <section class="content">
-
+            <div class="box-header with-border">               
+                <h3 class="box-title">
+                    <a class="btn bg-purple btn-flat" href="{{ route('news.index') }}">
+                        <i class="fa fa-arrow-left"></i> &nbsp;Back
+                    </a>
+                </h3>               
+            </div>    
             <!-- Default box -->
             <div class="box no-padding">
                 <div class="box-header with-border">

@@ -127,9 +127,11 @@ class NewsController extends Controller
         return view('backend.news.show', compact('news'));
     }
 
-    public function display(News $news)
+    public function display()
     {
-        $news = News::all();
+        $news = News::orderBy('created_at', 'desc')->paginate(4);
+
         return view('backend.news.display', compact('news'));
     }
+
 }
