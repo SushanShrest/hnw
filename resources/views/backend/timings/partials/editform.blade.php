@@ -3,13 +3,13 @@
         <div class="form-group col-md-2">
             <label for="day">Select a Day:</label>
             <select name="day" id="day" class="form-control">
-                <option value="sunday" {{ old('day', $timing->day) == 'sun' ? 'selected' : '' }}>Sunday</option>
-                <option value="monday" {{ old('day', $timing->day) == 'mon' ? 'selected' : '' }}>Monday</option>
-                <option value="tuesday" {{ old('day', $timing->day) == 'tue' ? 'selected' : '' }}>Tuesday</option>
-                <option value="wednesday" {{ old('day', $timing->day) == 'wed' ? 'selected' : '' }}>Wednesday</option>
-                <option value="thursday" {{ old('day', $timing->day) == 'thu' ? 'selected' : '' }}>Thursday</option>
-                <option value="friday" {{ old('day', $timing->day) == 'fri' ? 'selected' : '' }}>Friday</option>
-                <option value="saturday" {{ old('day', $timing->day) == 'sat' ? 'selected' : '' }}>Saturday</option>
+                <option value="sunday" {{ old('day', $timing->day) == 'sunday' ? 'selected' : '' }}>Sunday</option>
+                <option value="monday" {{ old('day', $timing->day) == 'monday' ? 'selected' : '' }}>Monday</option>
+                <option value="tuesday" {{ old('day', $timing->day) == 'tuesday' ? 'selected' : '' }}>Tuesday</option>
+                <option value="wednesday" {{ old('day', $timing->day) == 'wednesday' ? 'selected' : '' }}>Wednesday</option>
+                <option value="thursday" {{ old('day', $timing->day) == 'thursday' ? 'selected' : '' }}>Thursday</option>
+                <option value="friday" {{ old('day', $timing->day) == 'friday' ? 'selected' : '' }}>Friday</option>
+                <option value="saturday" {{ old('day', $timing->day) == 'saturday' ? 'selected' : '' }}>Saturday</option>
             </select>
             @error('day')
                 <span class="help-block">{{ $message }}</span>
@@ -18,14 +18,12 @@
 
         <div class="form-group col-md-2">
             <label for="shift">Select Shift:</label>
-            <select name="shift" id="shift" class="form-control">
-                <option value="1" {{ old('shift', $timing->shift) == '1' ? 'selected' : '' }}>Shift 1</option>
-                <option value="2" {{ old('shift', $timing->shift) == '2' ? 'selected' : '' }}>Shift 2</option>
-            </select>
+            <input type="text" class="form-control" readonly value="{{ $timing->shift == '1' ? 'Shift 1' : 'Shift 2' }}">
+            <input type="hidden" name="shift" value="{{ $timing->shift }}">
             @error('shift')
                 <span class="help-block">{{ $message }}</span>
             @enderror
-        </div> 
+        </div>        
 
         <div class="form-group col-md-2">
             <label for="start_time">Start Time:</label>

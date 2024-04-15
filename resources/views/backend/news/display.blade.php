@@ -36,9 +36,9 @@
                         </div>
                         <div style="position: relative;width: 60%; padding: 20px; display: grid;">
                             <div style="">
-                                <p style="font-size: 3rem">{{ $new->title }}</p>
+                                <p style="font-size: 2rem">{{ $new->title }}</p>
                                 <p style="font-size: 1rem">{{ $new->created_at->format('M d, Y') }}</p>
-                                <p style="font-size: 1.5rem">{{ $new->description }}</p>
+                                {{-- <p style="font-size: 1.5rem">{{ $new->description }}</p> --}}
                             </div>
                             <div style="position: absolute; right: 10px; bottom: 10px">
                                 <a href="{{ route('news.show', $new) }}">

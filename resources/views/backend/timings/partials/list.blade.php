@@ -16,8 +16,8 @@
         <tr>
             <td>{{ $timing->day }}</td>
             <td>{{ $timing->shift }}</td>
-            <td>{{ $timing->start_time }}</td>
-            <td>{{ $timing->end_time }}</td>
+            <td>{{ date('h:i A', strtotime($timing->start_time)) }}</td>
+            <td>{{ date('h:i A', strtotime($timing->end_time)) }}</td>
             <td>{{ $timing->location }}</td>
             <td>{{ $timing->visit_fee }}</td>
             <td>                       

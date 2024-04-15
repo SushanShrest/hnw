@@ -66,7 +66,7 @@
             @if ($departments->isNotEmpty())
                 @foreach ($departments as $department)
                     <div style="width: 100%; max-width: 350px; margin: 10px;">
-                        <div style="height: 420px; background-color: #598; padding: 15px; border: 1px solid #ccc; border-radius: 5px; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div style="height: 500px; background-color: #598; padding: 15px; border: 1px solid #ccc; border-radius: 5px; display: flex; flex-direction: column; justify-content: space-between;">
                             <div style="font-size: 2rem; color: #ffffff; font-weight: bold; margin-bottom: 10px;">
                                 {{ $department->code }} : {{ $department->department_name }}
                             </div>

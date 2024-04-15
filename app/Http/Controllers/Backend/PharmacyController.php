@@ -19,7 +19,7 @@ class PharmacyController extends Controller
     public function index(Request $request)
     {
         $searchTerm = $request->input('PharmacySearch', '');
-        $pharmacies = $this->searchPharmacies($searchTerm);
+        $pharmacies = $this->searchPharmacies($searchTerm)->paginate(10);
         return view($this->viewPath . '.index', compact('pharmacies', 'searchTerm'));
     }
 
@@ -65,10 +65,10 @@ class PharmacyController extends Controller
     public function display(Request $request)
     {
         $searchTerm = $request->input('PharmacySearch', '');
-        $pharmacies = $this->searchPharmacies($searchTerm);
-    return view($this->viewPath . '.display', compact('pharmacies', 'searchTerm'));
-    }
 
+        $pharmacies = $this->searchPharmacies($searchTerm)->paginate(5);
+        return view($this->viewPath . '.display', compact('pharmacies', 'searchTerm'));
+    }
 
     /**
      * Show the form for editing the specified pharmacy.
@@ -121,10 +121,9 @@ class PharmacyController extends Controller
     
     private function searchPharmacies($searchTerm)
     {
+        // Only build the query and return it without executing
         return Pharmacy::where('name', 'like', '%' . $searchTerm . '%')
-                        ->orWhere('district', 'like', '%' . $searchTerm . '%')
-                        ->get();
+                    ->orWhere('district', 'like', '%' . $searchTerm . '%');
     }
 
-    
 }
