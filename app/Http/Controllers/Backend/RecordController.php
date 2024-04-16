@@ -140,4 +140,25 @@ class RecordController extends Controller
         return redirect()->route('records.doctorindex')->with('success', 'Record updated successfully');
     }
 
+    public function edit(Record $record)
+    {
+        // Proceed directly to the edit view for admins
+        return view('backend.records.edit', compact('record'));
+    }
+
+    public function adminupdate(Request $request, Record $record)
+    {
+        $request->validate([
+            'followup_plan' => 'nullable',
+            'issue' => 'required',
+            'treatment' => 'required',
+            'medication' => 'required',
+        ]);
+
+        $record->update($request->all());
+
+        return redirect()->route('records.index')->with('success', 'Record updated successfully');
+    }
+
+
 }

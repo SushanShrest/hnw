@@ -110,6 +110,8 @@ Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'backend'], fu
     // RECORDS ROUTES
     Route::get('/backend/records', [RecordController::class, 'index'])->name('records.index');
     Route::get('/record/{record}', [RecordController::class, 'show'])->name('records.show');
+    Route::get('/record/{record}/adminedit', [RecordController::class, 'edit'])->name('records.edit');
+    Route::put('/record/{record}/adminupdate', [RecordController::class, 'adminupdate'])->name('records.adminupdate');
 
     // NEWS ROUTES
     Route::resource('news', NewsController::class)->except(["display", "show"]);

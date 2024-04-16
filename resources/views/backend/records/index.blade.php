@@ -61,6 +61,10 @@
                                     <a href="{{ route('records.show', ['record' => $record->id]) }}" class="btn btn-primary btn-xs" title="View Appointment">
                                         <i class="fa fa-eye"></i>
                                     </a>
+                                    <!-- Edit button -->
+                                    <a href="{{ route('records.edit', ['record' => $record->id]) }}" class="btn btn-warning btn-xs" title="Edit Record">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach

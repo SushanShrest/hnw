@@ -10,11 +10,11 @@
                 Edit Timing
 
             </h1>
-            <ol class="breadcrumb">
+            {{-- <ol class="breadcrumb">
                 <li><a href="{{ route('backend.home') }}"><i class="fa fa-home"></i> Home</a></li>
                 <li><a href="{{ route('timings.index') }}">Timing</a></li>
                 <li class="active">Edit</li>
-            </ol>
+            </ol> --}}
         </section>
 
         <!-- Main content -->
