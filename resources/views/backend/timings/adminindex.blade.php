@@ -48,7 +48,7 @@
                                 <th>Visit Fee</th>
                                 <th>Doctor ID</th>
                                 <th>Doctor Name</th>
-                                <th>Actions</th>
+                                {{-- <th>Actions</th> --}}
                             </tr>
                         </thead>
                         <tbody>
@@ -64,14 +64,14 @@
                                 <td>{{ $timing->doctor->id }}</td>
                                 <td>{{ $timing->doctor->user->name }}</td>
                                 <td>                       
-                                    <a href="{{ route('timings.edit', $timing) }}" class="btn btn-info btn-xs"> <i
-                                            class="fa fa-pencil"></i></a>
+                                    {{-- <a href="{{ route('timings.edit', $timing) }}" class="btn btn-info btn-xs"> <i
+                                            class="fa fa-pencil"></i></a> --}}
                         
-                                    @include('backend.partials.delete_modal', [
+                                    {{-- @include('backend.partials.delete_modal', [
                                         'id' => $timing->id,
                                         'title' => $timing->day,
                                         'route' => route('timings.destroy', $timing),
-                                    ])
+                                    ]) --}}
                                 </td>
                             </tr>
                             @endforeach

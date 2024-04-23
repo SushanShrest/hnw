@@ -87,38 +87,6 @@ class TimingController extends Controller
         return redirect()->route($this->baseRoute)->with('success', 'Timing updated successfully.');
     }
 
-    // public function update(Request $request, $id)
-    // {
-    //     $timing = $this->timing->findOrFail($id);
-
-    //     $validatedData = $request->validate([
-    //         'day' => 'required',
-    //         'shift' => [
-    //             'required',
-    //             function ($attribute, $value, $fail) use ($timing) {
-    //                 // Check if the current shift exists for the same day and doctor
-    //                 $existingShift = $this->timing->where('doctor_id', $timing->doctor_id)
-    //                     ->where('day', $timing->day)
-    //                     ->where('shift', $value)
-    //                     ->exists();
-
-    //                 // If the current shift already exists, fail validation
-    //                 if ($existingShift) {
-    //                     $fail("A timing for shift $value already exists for the selected day. Press timing to return back.");
-    //                 }
-    //             },
-    //         ],
-    //         'start_time' => 'required',
-    //         'end_time' => 'required',
-    //         'location' => 'required',
-    //         'visit_fee' => 'required|integer',
-    //     ]);
-
-    //     $timing->update($validatedData);
-
-    //     return redirect()->route($this->baseRoute)->with('success', 'Timing updated successfully.');
-    // }
-
     public function destroy(Timing $timing)
     {
         $timing->delete();
